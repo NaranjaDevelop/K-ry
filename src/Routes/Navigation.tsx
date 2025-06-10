@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import App from "../App"
 import Index from "../Pages/Jams/Jams"
-
+import Details from "../Pages/Details/Details"
 
 const routes = createBrowserRouter([
   {
@@ -26,8 +26,8 @@ const routes = createBrowserRouter([
         element: <div>Liked Jams Page</div>,
     },
     {
-        path: "/jams/:id",
-        element: <div>Jam Details Page</div>,
+        path: "/details",
+        element: <Details />,
     },
     {
         path: "/from",
@@ -36,7 +36,7 @@ const routes = createBrowserRouter([
     {
         path: "/test",
         element: <Index />,
-    }
+    },
 
 ])
 
