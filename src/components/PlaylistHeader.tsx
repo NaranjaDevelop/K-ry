@@ -15,7 +15,7 @@ const PlaylistHeader = () => {
       </div>
 
       {/* Playlist Info */}
-      <div className="flex-1">
+      <div className="flex-1 ">
         <h1 className="text-left text-6xl font-bold text-white mb-4">Chill Group</h1>
         
         <div className="flex items-center space-x-2 mb-6">
