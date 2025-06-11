@@ -20,7 +20,7 @@ const GenreTags = () => {
         {genres.map((genre) => (
           <span
             key={genre.name}
-            className={`${genre.color} text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-80 transition-opacity cursor-pointer`}
+            className={`${genre.color} text-white px-5 py-2 rounded-md text-sm font-medium hover:opacity-80 transition-opacity cursor-pointer`}
 
           >
             {genre.name}
