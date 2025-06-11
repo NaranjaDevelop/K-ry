@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import JamCard from '@/components/JamCard';
 import CreateJamModal from '@/components/CreateJamModal';
 
-const Index = () => {
+const Home = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [jams, setJams] = useState([
     {
@@ -117,4 +117,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;

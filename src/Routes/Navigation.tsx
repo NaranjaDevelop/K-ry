@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import App from "../App"
-import Index from "../Pages/Jams/Jams"
+import Home from "../Pages/Home/Home"
 import Details from "../Pages/Details/Details"
 
 const routes = createBrowserRouter([
@@ -23,7 +23,7 @@ const routes = createBrowserRouter([
     },
     {
         path: "/home",
-        element: <Index />,
+        element: <Home />,
     },
     {
         path: "/details",
