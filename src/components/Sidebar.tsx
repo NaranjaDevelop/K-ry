@@ -1,4 +1,4 @@
-
+import Logo from '../assets/K-RY.png';
 import { Home, User, CircleX, BellDot, Plus } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
