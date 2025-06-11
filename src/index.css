@@ -12,6 +12,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
 html, body, #root {
   margin: 0;
   padding: 0;
