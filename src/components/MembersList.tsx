@@ -15,7 +15,7 @@ const MembersList = () => {
         <Edit size={16} className="text-gray-400" />
       </div>
       
-      <div className="flex space-x-4 overflow-x-auto">
+      <div className="flex space-x-10 overflow-x-auto">
         {members.map((member) => (
           <div key={member.id} className="flex-shrink-0 text-center">
             <div className="relative">
@@ -28,7 +28,7 @@ const MembersList = () => {
                 −
               </button>
             </div>
-            <p className="text-xs text-gray-400 max-w-16 truncate">{member.name}</p>
+            <p className="text-xs text-gray-400">{member.name}</p>
           </div>
         ))}
       </div>
