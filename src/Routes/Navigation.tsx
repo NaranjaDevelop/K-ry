@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
-import App from "../App"
 import Index from "../Pages/Jams/Jams"
 import Details from "../Pages/Details/Details"
+import Landing from "../Pages/Landing/Landing"
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +37,11 @@ const routes = createBrowserRouter([
         path: "/test",
         element: <Index />,
     },
+
+    {
+        path: "/landing",
+        element: <Landing />,
+    }
 
 ])
 
