@@ -18,24 +18,25 @@ const routes = createBrowserRouter([
         element: <div>Signup Page</div>,
     },
     {
-        path: "/jams",
-        element: <div>jams Page</div>,
+        path: "/test",
+        element: <div>test</div>,
     },
     {
-        path: "/likedjams",
-        element: <div>Liked Jams Page</div>,
+        path: "/home",
+        element: <Index />,
     },
     {
         path: "/details",
         element: <Details />,
     },
-    {
-        path: "/from",
-        element: <div>From Page</div>,
+     {
+        path: "/Myjams",
+        element: <div>MyjamsPage</div>,
     },
+    
     {
-        path: "/Index",
-        element: <Index />,
+        path: "/favorites",
+        element: <div>Favorites</div>,
     },
 
 ])
