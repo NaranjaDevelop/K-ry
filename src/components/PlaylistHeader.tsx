@@ -37,7 +37,7 @@ const PlaylistHeader = () => {
             <button className="p-2 text-gray-400 hover:text-white transition-colors">
               <ThumbsDown size={20} />
             </button>
-            <button className="p-2 text-gray-400 hover:text-white transition-colors">
+            <button className="p-2 text-gray-400 hover:text-white transition-colors ">
               <Share2 size={20} />
             </button>
           </div>
