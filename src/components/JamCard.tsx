@@ -56,11 +56,15 @@ const JamCard = ({ title, matchPercentage, members, coverImage, isUp = true }: J
           
           {/* Music Match */}
           <div className="flex items-center gap-2 mb-3">
-            <span className={`${getMatchColor(matchPercentage)} font-medium`}>
-              {getArrowIcon(isUp)} {matchPercentage}%
-            </span>
-            <span className="text-gray-400 text-sm">music match</span>
-          </div>
+  <div className="flex items-center gap-1">
+    {getArrowIcon(isUp)}
+    <span className={`${getMatchColor(matchPercentage)} font-medium`}>
+      {matchPercentage}%
+    </span>
+  </div>
+  <span className="text-gray-400 text-sm">music match</span>
+</div>
+
 
           {/* Members */}
           <div className="flex items-center justify-between">
