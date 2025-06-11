@@ -23,7 +23,7 @@ const PlaylistHeader = () => {
           <span className="text-green-400 text-sm font-medium">76.5% music match</span>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-10">
           <Button className="bg-pink-500 hover:bg-pink-600 text-white px-12 py-3 rounded-50 font-semibold ">
             Join
           </Button>
