@@ -8,7 +8,7 @@ import GenreTags from "@/components/GenreTags";
 
 const Details = () => {
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex w-screen overflow-x-hidden">
+    <div className="min-h-screen bg-gray-950 text-white flex w-screen">
       <Sidebar />
       
       <div className="flex-1 flex flex-col ">
