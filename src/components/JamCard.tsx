@@ -1,5 +1,5 @@
 
-import { Plus } from 'lucide-react';
+import { Plus, TrendingUp, TrendingDown } from 'lucide-react';
 
 interface JamCardProps {
   title: string;
