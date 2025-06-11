@@ -17,8 +17,12 @@ const JamCard = ({ title, matchPercentage, members, coverImage, isUp = true }: J
   };
 
   const getArrowIcon = (isUp: boolean) => {
-    return isUp ? '↗' : '↘';
-  };
+  return isUp ? (
+    <TrendingUp size={16} className="text-green-400" />
+  ) : (
+    <TrendingDown size={16} className="text-red-400" />
+  );
+};
 
   const memberAvatars = Array.from({ length: Math.min(4, members) }, (_, i) => (
     <div
