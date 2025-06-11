@@ -1,5 +1,5 @@
 import Logo from '../assets/K-RY.png';
-import { Home, User, LayoutGrid, Heart, Plus } from 'lucide-react';
+import { Home, User, LayoutGrid, Heart, Plus, CircleX  } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
 interface SidebarProps {
@@ -59,7 +59,7 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
       {/* Logout */}
       <div className="p-4">
         <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white transition-colors duration-200">
-          <LayoutGrid size={20} />
+          <CircleX size={20} />
           <span>Logout</span>
         </button>
       </div>
