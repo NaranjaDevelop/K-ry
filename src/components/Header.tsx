@@ -1,5 +1,5 @@
 
-import { BellDot, User } from 'lucide-react';
+import { BellDot, User, Settings } from 'lucide-react';
 
 const Header = () => {
   return (
