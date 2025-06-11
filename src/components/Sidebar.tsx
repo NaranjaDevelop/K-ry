@@ -1,5 +1,5 @@
 import Logo from '../assets/K-RY.png';
-import { Home, User, CircleX, Heart, Plus } from 'lucide-react';
+import { Home, User, LayoutGrid, Heart, Plus } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
 interface SidebarProps {
@@ -10,7 +10,7 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
   const menuItems = [
     { icon: Home, label: 'Home', active: true },
     { icon: User, label: 'Profile', active: false },
-    { icon: CircleX, label: 'My Jams', active: false },
+    { icon: LayoutGrid, label: 'My Jams', active: false },
     { icon: Heart, label: 'Favorites', active: false },
   ];
 
