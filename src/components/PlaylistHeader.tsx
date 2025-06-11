@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Heart, ThumbsDown, Share2, Edit } from "lucide-react";
+import { Heart, ThumbsDown, Share2 } from "lucide-react";
 
 const PlaylistHeader = () => {
   return (
