@@ -11,11 +11,8 @@ const Header = () => {
       <div className="flex items-center gap-4">
         {/* Settings */}
         <button className="p-2 text-gray-400 hover:text-white transition-colors duration-200">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 8a4 4 0 100 8 4 4 0 000-8zM12 6a6 6 0 110 12 6 6 0 010-12z"/>
-            <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
-          </svg>
-        </button>
+  <Settings size={20} />
+</button>
 
         {/* Notifications */}
         <button className="p-2 text-gray-400 hover:text-white transition-colors duration-200 relative">
