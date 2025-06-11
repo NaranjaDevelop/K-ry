@@ -76,7 +76,7 @@ const Index = () => {
       <Sidebar onCreateJam={handleCreateJam} className="h-screen" />
 
       {/* Main Content */}
-      <div className="flex-1">
+      <div className="flex-1 pl-64">
         {/* Header */}
         <Header />
 
