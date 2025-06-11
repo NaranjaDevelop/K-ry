@@ -58,7 +58,7 @@ const SongsList = () => {
             <div className="flex-1">
               <div className="flex items-center space-x-3">
                 <div>
-                  <h3 className="text-white font-medium">{song.title}</h3>
+                  <h3 className="text-left text-white font-medium">{song.title}</h3>
                   <p className="text-gray-400 text-sm">{song.artist}</p>
                 </div>
               </div>
