@@ -15,7 +15,7 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
   ];
 
   return (
-    <div className="w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col">
+    <div className="fixed top-0 left-0 w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col z-50">
       {/* Logo */}
       <div className="p-6">
          <img src={Logo} alt="K-RY Logo" className="h-10 w-auto" />
