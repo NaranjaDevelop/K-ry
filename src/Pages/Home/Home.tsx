@@ -71,7 +71,7 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-gray-950 text-white flex h-screen w-screen">
+    <div className="bg-gray-950 text-white flex min-h-screen w-screen">
       {/* Sidebar */}
       <Sidebar onCreateJam={handleCreateJam} className="h-screen" />
 
