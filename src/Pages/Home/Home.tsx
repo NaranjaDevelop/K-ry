@@ -83,7 +83,7 @@ const Home = () => {
         {/* Main Content Area */}
         <main className="flex-1 p-8">
           {/* Welcome Section */}
-          <div className="">
+          <div className="mb-10">
             <h1 className="text-3xl font-bold mb-2">
               Hi <span className="text-purple-400">User 123</span>
             </h1>
