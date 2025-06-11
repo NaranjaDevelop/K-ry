@@ -24,7 +24,7 @@ const PlaylistHeader = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <Button className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-full font-semibold">
+          <Button className="bg-pink-500 hover:bg-pink-600 text-white px-12 py-3 rounded-50 font-semibold ">
             Join
           </Button>
           
