@@ -34,7 +34,7 @@ const routes = createBrowserRouter([
         element: <div>From Page</div>,
     },
     {
-        path: "/test",
+        path: "/Index",
         element: <Index />,
     },
 
