@@ -17,7 +17,9 @@ html, body, #root {
   padding: 0;
   
 }
-
+body, html {
+  overflow-x: hidden;
+}
 a {
   font-weight: 500;
   color: #646cff;
