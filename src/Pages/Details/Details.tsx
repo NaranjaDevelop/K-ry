@@ -11,7 +11,7 @@ const Details = () => {
     <div className="min-h-screen bg-gray-950 text-white flex w-screen">
       <Sidebar className="w-64 h-screen fixed top-0 left-0 bg-gray-900 z-50" />
       
-      <div className="flex-1 flex flex-col ">
+      <div className="flex-1 flex flex-col pl-64">
         <Header />
         
         <main className="flex-1 p-8 overflow-y-auto ">
