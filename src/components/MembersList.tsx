@@ -22,9 +22,9 @@ const MembersList = () => {
               <img
                 src={member.avatar}
                 alt={member.name}
-                className="w-30 h-30 rounded-full object-cover mb-2"
+                className="w-35 h-35 rounded-full object-cover mb-2"
               />
-              <button className="absolute -top-1 -right-1 w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-600">
+              <button className="absolute -top-0 -right-1 w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-600">
                 −
               </button>
             </div>
