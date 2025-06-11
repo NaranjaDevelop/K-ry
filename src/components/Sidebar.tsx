@@ -21,6 +21,7 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
         <h1 className="text-2xl font-bold text-white">
           <span className="text-purple-500">K</span>ru
         </h1>
+        
       </div>
 
       {/* Navigation */}
