@@ -38,7 +38,7 @@ const SongsList = () => {
   ];
 
   return (
-    <div className="bg-gray-900/50 rounded-lg p-6">
+    <div className="bg-gray-900/50 rounded-lg p-6 max-w-2xl mx-auto">
       <h2 className="text-xl font-semibold text-white mb-6">All Songs</h2>
       
       <div className="space-y-4">
