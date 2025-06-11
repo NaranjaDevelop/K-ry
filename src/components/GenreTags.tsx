@@ -13,7 +13,7 @@ const GenreTags = () => {
   ];
 
   return (
-    <div className="bg-gray-900/50 rounded-lg p-6">
+    <div className="bg-gray-900/50 rounded-lg p-6 max-w-2x1">
       <h2 className="text-xl font-semibold text-white mb-6">Genres</h2>
       
       <div className="flex flex-wrap gap-3">
