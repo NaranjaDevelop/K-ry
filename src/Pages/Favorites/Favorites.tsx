@@ -14,11 +14,11 @@ const mockSongs = [
   },
   {
     id: 2,
-    title: "cruel summer",
-    artist: "Taylor Swift",
-    album: "Lover",
+    title: "Silent Cry",
+    artist: "Stray Kids",
+    album: "Noeasy",
     duration: "3:19",
-    artwork: "https://images.unsplash.com/photo-1557761465-9c4d9cda77c2?w=50&h=50&fit=crop"
+    artwork: "https://i.scdn.co/image/ab67616d0000b2731843897a2a72dd5036bbb1fc"
   }
 ];
 
