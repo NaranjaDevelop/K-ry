@@ -1,7 +1,5 @@
-import starface from '../assets/Q1/starface.png';
-import sad from '../assets/Q1/sad02.png';
-import calm from '../assets/Q1/relieved01.png';
-import cool from '../assets/Q1/sunglasses.png';
+import starface from '../assets/Q1/starface.png'; import sad from '../assets/Q1/sad02.png'; import calm from '../assets/Q1/relieved01.png'; import cool from '../assets/Q1/sunglasses.png';
+import angle from '../assets/Q2/angle.png'; import mute from '../assets/Q2/mute.png'; import singright from '../assets/Q2/singright.png'; 
 const dataform =  {
   "formulario": [
     {
@@ -22,10 +20,10 @@ const dataform =  {
       "pregunta": "2. ¿Qué te atrae más de una canción?",
       "asocia": ["danceability", "energy", "speechiness", "instrumentalness"],
       "opciones": [
-        { "texto": "Que tenga buen ritmo para mover el cuerpo", "danceability": 0.9, "energy": 0.8 },
-        { "texto": "Que tenga letras potentes o con mensaje", "speechiness": 0.8, "energy": 0.6 },
-        { "texto": "Que sea instrumental, sin letra", "instrumentalness": 0.9, "speechiness": 0.1 },
-        { "texto": "Que tenga sonidos suaves, como acústicos", "instrumentalness": 0.5, "energy": 0.3 }
+        { "texto": "Que tenga buen ritmo para mover el cuerpo", "danceability": 0.9, "energy": 0.8,"icon": angle },
+        { "texto": "Que tenga letras potentes o con mensaje", "speechiness": 0.8, "energy": 0.6, "icon": mute },
+        { "texto": "Que sea instrumental, sin letra", "instrumentalness": 0.9, "speechiness": 0.1 , "icon": singright},
+        { "texto": "Que tenga sonidos suaves, como acústicos", "instrumentalness": 0.5, "energy": 0.3 , "icon": cool}
       ]
     },
     {
