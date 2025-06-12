@@ -7,7 +7,7 @@ import Auth from "../Pages/Login/Login"
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <div>Welcome to the KRY Test App</div>,
+    element: <Landing />,
     
   },
   {
@@ -35,11 +35,6 @@ const routes = createBrowserRouter([
         path: "/favorites",
         element: <div>Favorites</div>,
     },
-
-    {
-        path: "/landing",
-        element: <Landing />,
-    }
 
 ])
 
