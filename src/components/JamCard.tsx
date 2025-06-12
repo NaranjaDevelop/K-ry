@@ -2,6 +2,7 @@
 import { Plus, TrendingUp, TrendingDown } from 'lucide-react';
 
 interface JamCardProps {
+  id: number;
   title: string;
   matchPercentage: number;
   members: number;
