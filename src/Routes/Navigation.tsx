@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 import Index from "../Pages/Jams/Jams"
 import Details from "../Pages/Details/Details"
 import Landing from "../Pages/Landing/Landing"
+import Auth from "../Pages/Login/Login"
 
 const routes = createBrowserRouter([
   {
@@ -11,11 +12,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <div>Login Page</div>,
-    },
-    {
-        path: "/signup",
-        element: <div>Signup Page</div>,
+    element: <Auth />,
     },
     {
         path: "/jams",
