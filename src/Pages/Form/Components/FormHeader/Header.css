@@ -1,0 +1,6 @@
+.header{
+    width: 99px;
+    height: 48px;
+    flex-shrink: 0;
+    margin: 25px;
+}

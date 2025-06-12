@@ -1,0 +1,70 @@
+
+.answer-option{
+    width: 300px;
+    height: 280px;
+    min-height: fit-content;
+    background-color: #ffffff;
+    border-radius: 31px;
+}
+
+.answer-option.selected {
+    background-color: #D7F177; /* Color verde cuando está seleccionado */
+}
+
+
+.answer-option:hover{
+    background-color: #D7F177;
+    border-radius: 31px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    transform: translateY(-20px); /* Mueve la tarjeta 10px hacia arriba */
+    transition: 0.2s;
+}
+
+.answer-option p{
+    font-weight: 500;
+    color: #292929;
+    margin-top: 122px;
+    padding: 0 28px;
+    background:none;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 25.5px */
+    letter-spacing: -0.187px;
+    width: auto;
+}
+
+.answer-option p:hover{
+    color: #234e03;
+}
+
+.answer-option img{
+    width: 40px;
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 30px;
+    background: none;
+}
+
+/* Media queries para asegurar el diseño en pantallas móviles */
+@media (max-width: 480px) {
+    .answer-option {
+        width: 90%; /* La tarjeta ocupará todo el ancho del contenedor */
+        height: 140px; /* Ajusta la altura */
+    }
+
+    .answer-option p {
+        margin-top: 30px; /* Ajusta la posición del texto */
+        font-size: 14px; /* Ajusta el tamaño del texto */
+    }
+
+    .answer-option img {
+        margin-top: 15px; /* Ajusta el margen superior de la imagen */
+        width: 35px; /* Ajusta el tamaño de la imagen */
+        height: 35px;
+    }
+
+    .answer-option:hover {
+        transform: translateY(-5px); /* Ajusta la animación de la tarjeta */
+    }
+}
