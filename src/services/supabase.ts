@@ -180,3 +180,69 @@ export const favoriteSong = async (song: tracks, username: string) => {
 
     return { success: true, favs };
 }
+
+const getSongsFromApi = async (group: unknown) => {
+    const response = await fetch('https://your-api-endpoint.com/update-song', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ group })
+    });
+
+    if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+    }
+
+    const result = await response.json();
+    return result;
+}
+
+const createProtoPerson = async (group: unknown) => {
+    try {
+        const response = await fetch('https://your-api-endpoint.com/create-protoperson', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ group })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Error creating protoperson:', error);
+        throw error;
+    }
+}
+
+export const updateSongs = async (group: unknown) => {
+
+    //logic to separate group protoperson from group
+
+    try {
+        const protoperson = await createProtoPerson(group);
+
+        const updatedSongs = await getSongsFromApi(protoperson);
+        console.log('Updated songs:', updatedSongs);
+
+        const { data, error } = await supabase
+            .from('groups')
+            .update({ songs: updatedSongs })
+            .eq('id', group.id)
+            .select();
+        
+        if (error) {
+            throw error;
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Error updating songs:', error);
+        throw error;
+    }
+}
