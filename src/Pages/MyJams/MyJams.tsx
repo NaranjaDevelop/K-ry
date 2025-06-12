@@ -64,17 +64,18 @@ const MyJams = () => {
       <div className="flex-1 pl-64">
         <Header />
 
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-8 overflow-y-auto min-h-screen bg-gray-950">
 
           {/* Created by You */}
           <div className="mb-12">
-            <h2 className="text-2xl font-regular mb-4">Created by You</h2>
+            <h2 className="text-2xl mb-4">Created by You</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {loading
                 ? Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
                 : createdJams.length > 0 ? (
                     createdJams.map((jam) => (
                       <JamCard
+                        className="h-full"  
                         key={jam.id}
                         title={jam.title}
                         matchPercentage={jam.matchPercentage || 75}
@@ -93,14 +94,15 @@ const MyJams = () => {
 
           {/* Joined Jams */}
           <div>
-            <h2 className="text-2xl font-regular mb-4">Joined Jams</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <h2 className="text-2xl mb-4">Joined Jams</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 h-full">
               {loading
                 ? Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
                 : joinedJams.length > 0 ? (
                     joinedJams.map((jam) => (
                       <div key={jam.id} className="relative group">
                         <JamCard
+                            className="h-full"
                           title={jam.title}
                           matchPercentage={jam.matchPercentage || 75}
                           members={jam.members || 10}
