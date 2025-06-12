@@ -1,5 +1,8 @@
 import starface from '../assets/Q1/starface.png'; import sad from '../assets/Q1/sad02.png'; import calm from '../assets/Q1/relieved01.png'; import cool from '../assets/Q1/sunglasses.png';
 import angle from '../assets/Q2/angle.png'; import mute from '../assets/Q2/mute.png'; import singright from '../assets/Q2/singright.png'; 
+import sleeping from '../assets/Q3/sleeping.png'; import smile from '../assets/Q3/smile.png'; import tongue from '../assets/Q3/tongue-wink-right.png'; import mused from '../assets/Q3/unamused.png';
+
+
 const dataform =  {
   "formulario": [
     {
@@ -20,10 +23,10 @@ const dataform =  {
       "pregunta": "2. ¿Qué te atrae más de una canción?",
       "asocia": ["danceability", "energy", "speechiness", "instrumentalness"],
       "opciones": [
-        { "texto": "Que tenga buen ritmo para mover el cuerpo", "danceability": 0.9, "energy": 0.8,"icon": angle },
-        { "texto": "Que tenga letras potentes o con mensaje", "speechiness": 0.8, "energy": 0.6, "icon": mute },
-        { "texto": "Que sea instrumental, sin letra", "instrumentalness": 0.9, "speechiness": 0.1 , "icon": singright},
-        { "texto": "Que tenga sonidos suaves, como acústicos", "instrumentalness": 0.5, "energy": 0.3 , "icon": cool}
+        { "texto": "Que tenga buen ritmo para mover el cuerpo", "danceability": 0.9, "energy": 0.8,"icon": cool },
+        { "texto": "Que tenga letras potentes o con mensaje", "speechiness": 0.8, "energy": 0.6, "icon": singright },
+        { "texto": "Que sea instrumental, sin letra", "instrumentalness": 0.9, "speechiness": 0.1 , "icon": mute},
+        { "texto": "Que tenga sonidos suaves, como acústicos", "instrumentalness": 0.5, "energy": 0.3 , "icon": angle}
       ]
     },
     {
@@ -31,10 +34,10 @@ const dataform =  {
       "pregunta": "3. ¿Qué tan animada o tranquila preferís que sea la música que escuchás?",
       "asocia": ["energy", "tempo", "loudness"],
       "opciones": [
-        { "texto": "Muy animada y rápida", "energy": 0.9, "tempo": 140, "loudness": -4 },
-        { "texto": "Intermedia, ni muy rápida ni muy lenta", "energy": 0.6, "tempo": 110, "loudness": -8 },
-        { "texto": "Tranquila y suave", "energy": 0.3, "tempo": 90, "loudness": -12 },
-        { "texto": "Muy relajada o casi ambiental", "energy": 0.1, "tempo": 60, "loudness": -20 }
+        { "texto": "Muy animada y rápida", "energy": 0.9, "tempo": 140, "loudness": -4 , "icon": tongue},
+        { "texto": "Intermedia, ni muy rápida ni muy lenta", "energy": 0.6, "tempo": 110, "loudness": -8, "icon": smile },
+        { "texto": "Tranquila y suave", "energy": 0.3, "tempo": 90, "loudness": -12, "icon": mused },
+        { "texto": "Muy relajada o casi ambiental", "energy": 0.1, "tempo": 60, "loudness": -20 , "icon": sleeping}
       ]
     },
     {
