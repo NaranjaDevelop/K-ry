@@ -4,11 +4,12 @@ import Details from "../Pages/Details/Details"
 import Landing from "../Pages/Landing/Landing"
 import Auth from "../Pages/Login/Login"
 import Form from "../Pages/Form/Form"
+import MyJams from "../Pages/MyJams/MyJams"
 
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <div>Welcome to the KRY Test App</div>,
+    element: <Landing />,
     
   },
   {
@@ -29,18 +30,13 @@ const routes = createBrowserRouter([
     },
      {
         path: "/Myjams",
-        element: <div>MyjamsPage</div>,
+        element: <MyJams />,
     },
     
     {
         path: "/favorites",
         element: <div>Favorites</div>,
     },
-
-    {
-        path: "/landing",
-        element: <Landing />,
-    }
 
 ])
 
