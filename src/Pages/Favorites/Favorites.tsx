@@ -23,13 +23,13 @@ const mockSongs = [
 ];
 
 const Favorites = () => {
-  const [favorites, setFavorites] = useState<number[]>(mockSongs.map((s) => s.id)); // Todos favoritos por defecto
+  const [favorites, setFavorites] = useState<number[]>(mockSongs.map((s) => s.id)); 
 
   const handleToggleFavorite = (songId: number) => {
     setFavorites((prev) =>
       prev.includes(songId)
-        ? prev.filter((id) => id !== songId) // quitás
-        : [...prev, songId] // agregás
+        ? prev.filter((id) => id !== songId) 
+        : [...prev, songId] 
     );
   };
 
@@ -41,11 +41,11 @@ const Favorites = () => {
         <Header />
 
         <main className="flex-1 p-8 overflow-y-auto">
-          <h1 className="text-3xl font-bold mb-8">Favorites</h1>
+          <h1 className="text-2xl  mb-8">My Favorites Songs</h1>
 
           <SongsList
             songs={mockSongs}
-            title="Favorite Songs"
+            title="Liked Songs"
             favorites={favorites}
             onToggleFavorite={handleToggleFavorite}
           />
