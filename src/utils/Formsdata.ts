@@ -6,7 +6,7 @@ const dataform =  {
       "pregunta": "1. Si tuvieras que elegir una vibra musical para acompañarte hoy, ¿cuál elegirías?",
       "asocia": ["valence", "track_genre"],
       "opciones": [
-        { "texto": "Una canción feliz y energética para motivarme 🎉 🎉", "valence": 0.9, "track_genre": "pop" },
+        { "texto": "Una canción feliz y energética para motivarme 🎉 🎉", "valence": 0.9, "track_genre": "pop", "icon": "/assets/Q1/starface.png" },
         { "texto": "Algo relajante y suave para calmarme 🌿", "valence": 0.4, "track_genre": "ambient" },
         { "texto": "Música intensa o emocional para liberar tensiones 💔", "valence": 0.2, "track_genre": "rock" },
         { "texto": "Solo quiero ritmo y flow para bailar 🕺", "valence": 0.8, "track_genre": "dance" }
