@@ -3,6 +3,7 @@ import Home from "../Pages/Home/Home"
 import Details from "../Pages/Details/Details"
 import Landing from "../Pages/Landing/Landing"
 import Auth from "../Pages/Login/Login"
+import Form from "../Pages/Form/Form"
 import MyJams from "../Pages/MyJams/MyJams"
 
 const routes = createBrowserRouter([
@@ -16,8 +17,8 @@ const routes = createBrowserRouter([
     element: <Auth />,
     },
     {
-        path: "/test",
-        element: <div>test</div>,
+        path: "/form",
+        element: <Form />,
     },
     {
         path: "/home",
