@@ -4,29 +4,32 @@ import Sidebar from "@/components/Sidebar";
 import Header from '@/components/Header';
 import JamCard from '@/components/JamCard';
 import CreateJamModal from '@/components/CreateJamModal';
-import supabase from '../../services/supaConfig';
-import { useLocation } from 'react-router-dom';
+import type { Group } from '../../Types/Interfaces';
+import { useSelector } from 'react-redux';
+import { useAppDispatch, type storeType } from '../../store/store';
+import { createGroup } from '../../services/supabase';
+import { getGroups } from '../../store/slice';
 
 
 
 const Home = () => {
-  const location = useLocation()
-  console.log(location.state);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getGroups())
+  }, [dispatch]);
+
   
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [jams, setJams] = useState<any[]>([]);
+  const [jams, setJams] = useState<Group[]>([]);
 
-   useEffect(() => {
-    const getgroups = async () => {
-      const { data: groups, error } = await supabase
-        .from('groups')
-        .select('*');
-      console.log(groups);
-      setJams(groups ?? [])
-    };
-    getgroups();
+  const user = useSelector((state: storeType) => state.user.user);
+  const otherGroups = useSelector((state: storeType) => state.user.otherGroups);
+  
+  useEffect(() => {
+  setJams(otherGroups);
+  }, [otherGroups]);
 
-  }, []);
 
   const handleCreateJam = () => {
     setIsCreateModalOpen(true);
@@ -37,16 +40,16 @@ const Home = () => {
   };
 
 
-  const handleJamCreated = (jamData: { name: string; description: string }) => {
+  const handleJamCreated = (jamData: { name: string; description: string, photo: string }) => {
+    console.log(user)
     const newJam = {
-      id: jams.length + 1,
-      title: jamData.name,
-      matchPercentage: 0, // Random percentage between 60-100
-      members: [],
-      coverImage: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop',
-      isUp: true
+      name: jamData.name,
+      description: jamData.description,
+      coverImage: jamData.photo,
+      users: [user.user_name],
     };
-    setJams([newJam, ...jams]);
+
+    createGroup(newJam.name, newJam.description, newJam.coverImage, newJam.users)
   };
 
   return (
@@ -78,8 +81,8 @@ const Home = () => {
                 title={jam.name}
                 matchPercentage={jam.matchPercentage}
                 members={jam.users}
-                coverImage={jam.coverImage}
-                isUp={jam.isUp}
+                coverImage={jam.image}
+                isUp={jam.users.includes(user.user_name)}
               />
             ))}
           </div>

@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import type { userinterface } from '../Types/Interfaces';
+import type { Group, userinterface } from '../Types/Interfaces';
 import { getAllGroups } from '../services/supabase';
 
 export interface UserState {
     user: userinterface,
-    userGroups: unknown[],
-    otherGroups: unknown[],
-    joinedGroups: unknown[]
+    userGroups: Group[],
+    otherGroups: Group[],
+    joinedGroups: Group[]
 }
 
 const initialState: UserState = {
@@ -18,7 +18,12 @@ const initialState: UserState = {
         user_energy: 0,
         user_instrumentalness: 0,
         user_speechiness: 0,
-        user_tempo: 0
+        user_tempo: 0,
+        user_loudness: 0,
+        user_explicit: false,
+        user_groups: [],
+        user_email: '',
+        user_favorites: []
     },
     userGroups: [],
     otherGroups: [],
@@ -30,7 +35,11 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-        state.user = action.payload;
+        state.user = {
+            ...state.user,
+            user_name: action.payload.username || '',
+            user_email: action.payload.email || '',
+        };
     },
     setGroups: (state, action) => {
         state.userGroups = action.payload.userGroups || [];

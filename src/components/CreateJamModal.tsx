@@ -10,7 +10,7 @@ import { getImageUrl } from '../services/supabase';
 interface CreateJamModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreateJam: (jamData: { name: string; description: string }) => void;
+  onCreateJam: (jamData: { name: string; description: string; photo: string }) => void;
 }
 
 const CreateJamModal = ({ isOpen, onClose, onCreateJam }: CreateJamModalProps) => {
@@ -43,7 +43,7 @@ const CreateJamModal = ({ isOpen, onClose, onCreateJam }: CreateJamModalProps) =
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (jamName.trim()) {
-      onCreateJam({ name: jamName, description: jamDescription });
+      onCreateJam({ name: jamName, description: jamDescription, photo: coverImage || 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/CD_autolev_crop_new.jpg/250px-CD_autolev_crop_new.jpg' });
       setJamName('');
       setJamDescription('');
       onClose();
@@ -68,14 +68,14 @@ const CreateJamModal = ({ isOpen, onClose, onCreateJam }: CreateJamModalProps) =
           <div className="flex gap-6 mb-6">
             {/* Upload Cover */}
             <div className="flex-shrink-0">
-              <div className="w-48 h-48 bg-gray-700 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-600 transition-colors duration-200 group" onClick={handleUploadClick} style={{ backgroundImage: coverImage ? `url(${coverImage})` : 'none', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div className="w-48 h-48 bg-gray-700 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-600 transition-colors duration-200 group" onClick={handleUploadClick}>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gray-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-gray-500 transition-colors duration-200">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" className="text-gray-400">
                       <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
                     </svg>
                   </div>
-                  <p className="text-gray-400 text-sm font-medium">Upload Cover</p>
+                  <p className="text-gray-400 text-sm font-medium">{coverImage ? 'Cover uploaded' : 'Upload cover'}</p>
                 </div>
               </div>
             </div>

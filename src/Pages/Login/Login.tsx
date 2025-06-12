@@ -6,6 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import video from "../../assets/fondok-ry.mp4"
 import logo from "../../assets/logo-kry-white.png"; // Assuming you have a logo image
+import { loginUser, registerUser } from "../../services/supabase";
+import { useAppDispatch } from "../../store/store";
+import { getGroups, setUser } from "../../store/slice";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,6 +21,8 @@ const Auth = () => {
     rememberMe: false,
     agreeToTerms: false,
   });
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -25,6 +31,15 @@ const Auth = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+
+    if (isLogin) {
+      loginUser(formData.email, formData.password).then((user) => dispatch(setUser(user)));
+      navigate("/home");
+    } else {
+      registerUser(
+        formData.username, formData.email, formData.password).then((user) => dispatch(setUser(user)));
+      navigate("/home");
+    }
   };
 
   return (
