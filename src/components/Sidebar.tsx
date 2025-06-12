@@ -13,7 +13,7 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
 
   const menuItems = [
     { icon: Home, label: 'Home', path: '/home' },
-    { icon: User, label: 'Profile', path: '/profile' }, // Placeholder si no tenés aún
+    { icon: User, label: 'Profile', active: false },
     { icon: LayoutGrid, label: 'My Jams', path: '/myjams' },
     { icon: Heart, label: 'Favorites', path: '/favorites' },
   ];
