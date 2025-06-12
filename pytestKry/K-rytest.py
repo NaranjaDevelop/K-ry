@@ -18,7 +18,7 @@ supabase: Client = create_client("https://icabjgwodrysbrwrraxg.supabase.co", "ey
 CORS(app)
 
 
-df = pd.read_csv(r'D:\stikers\Kry\K-ry\pytestKry\Music.csv', on_bad_lines='skip', low_memory=False)
+df = pd.read_csv(r'Music.csv', on_bad_lines='skip', low_memory=False)
 
 df.columns = df.columns.str.strip().str.replace(';', '')
 df["track_genre"] = df["track_genre"].str.replace(';', '') 
@@ -89,6 +89,7 @@ def postuser():
     )
     return jsonify(userrecommended.to_dict(orient='records'), data['data']), 200
     
+
 
 
 app.run()
