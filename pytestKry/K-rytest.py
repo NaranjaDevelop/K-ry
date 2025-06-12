@@ -64,7 +64,10 @@ def recommend_songs(df , user_danceability, user_energy, user_genre, user_instru
 # user_genre = 'spanish,pop,rock'
 # user_explicit = False  
 
-
+@app.route('/', methods=['GET'])
+def getuser():
+    return "<p>Hello, World!</p>"
+    
 
 
 @app.route('/Newuser', methods=['POST'])
