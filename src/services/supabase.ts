@@ -1,3 +1,4 @@
+import type { tracks } from "../Types/Interfaces";
 import supabase from "./supaConfig";
 
 export const registerUser = async (username: string, email: string, password: string) => {
@@ -125,4 +126,57 @@ export const leaveGroup = async (groupId: string, username: string) => {
     }
 
     return { success: true };
+}
+
+export const getImageUrl = async (file: File) => {
+    const cleanName = file.name.replace(/\s+/g, '_').toLowerCase();
+
+    const { data, error } = await supabase.storage
+        .from('groupsimages')
+        .upload(`public/${cleanName}`, file, {
+            cacheControl: '3600',
+            upsert: true
+        });
+
+    if (error) {
+        throw error;
+    }
+
+    const { data: urlData } = supabase.storage
+        .from('images')
+        .getPublicUrl(data.path);
+
+    return urlData.publicUrl;
+}
+
+export const favoriteSong = async (song: tracks, username: string) => {
+    const { data, error } = await supabase
+        .from('users')
+        .select('favs')
+        .eq('username', username)
+        .single();
+
+    if (error) {
+        throw error;
+    }
+
+    const favs: tracks[] = data?.favs || [];
+    const songIndex = favs.findIndex(fav => fav.id === song.id);
+
+    if (songIndex === -1) {
+        favs.push(song);
+    } else {
+        favs.splice(songIndex, 1);
+    }
+
+    const { error: updateError } = await supabase
+        .from('users')
+        .update({ favs })
+        .eq('username', username);
+
+    if (updateError) {
+        throw updateError;
+    }
+
+    return { success: true, favs };
 }
