@@ -29,25 +29,32 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
       <nav className="flex-1 px-4">
         <ul className="space-y-2">
           {menuItems.map((item, index) => {
-            const isActive =
-              location.pathname.toLowerCase() === item.path.toLowerCase();
+  const isActive =
+    item.path && location.pathname.toLowerCase() === item.path.toLowerCase();
 
-            return (
-              <li key={index}>
-                <button
-                  onClick={() => navigate(item.path)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${
-                    isActive
-                      ? 'bg-purple-600 text-white'
-                      : 'text-gray-400 hover:text-white hover:bg-gray-800'
-                  }`}
-                >
-                  <item.icon size={20} />
-                  <span>{item.label}</span>
-                </button>
-              </li>
-            );
-          })}
+  const commonClasses = `w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${
+    isActive
+      ? 'bg-purple-600 text-white'
+      : 'text-gray-400 hover:text-white hover:bg-gray-800'
+  }`;
+
+  return (
+    <li key={index}>
+      {item.path ? (
+        <button onClick={() => navigate(item.path)} className={commonClasses}>
+          <item.icon size={20} />
+          <span>{item.label}</span>
+        </button>
+      ) : (
+        <div className={commonClasses}>
+          <item.icon size={20} />
+          <span>{item.label}</span>
+        </div>
+      )}
+    </li>
+  );
+})}
+
         </ul>
       </nav>
 
