@@ -87,4 +87,4 @@ def postuser():
     return jsonify(userrecommended.to_dict(orient='records'), data['data']), 200
     
     
-app.run(debug=True)
+app.run()
