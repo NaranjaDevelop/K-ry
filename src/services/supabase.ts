@@ -1,6 +1,8 @@
 import type { tracks } from "../Types/Interfaces";
 import supabase from "./supaConfig";
 
+export default supabase;
+
 export const registerUser = async (username: string, email: string, password: string) => {
 
     const { data, error } = await supabase
