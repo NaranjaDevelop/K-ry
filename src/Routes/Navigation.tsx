@@ -1,20 +1,18 @@
 import { createBrowserRouter } from "react-router-dom"
 import Home from "../Pages/Home/Home"
 import Details from "../Pages/Details/Details"
+import Landing from "../Pages/Landing/Landing"
+import Auth from "../Pages/Login/Login"
 
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <div>Welcome to the KRY Test App</div>,
+    element: <Landing />,
     
   },
   {
     path: "/login",
-    element: <div>Login Page</div>,
-    },
-    {
-        path: "/signup",
-        element: <div>Signup Page</div>,
+    element: <Auth />,
     },
     {
         path: "/test",
@@ -41,3 +39,4 @@ const routes = createBrowserRouter([
 ])
 
 export default routes
+

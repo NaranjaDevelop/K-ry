@@ -1,54 +1,26 @@
 
-import { useState } from 'react';
+import {  useEffect, useState } from 'react';
 import Sidebar from "@/components/Sidebar";
 import Header from '@/components/Header';
 import JamCard from '@/components/JamCard';
 import CreateJamModal from '@/components/CreateJamModal';
+import supabase from '../../services/supabase';
+
+
 
 const Home = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [jams, setJams] = useState([
-    {
-      id: 1,
-      title: 'Brat Summer',
-      matchPercentage: 76.5,
-      members: 8,
-      coverImage: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop',
-      isUp: true
-    },
-    {
-      id: 2,
-      title: "Taylor's version",
-      matchPercentage: 21.3,
-      members: 15,
-      coverImage: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop',
-      isUp: false
-    },
-    {
-      id: 3,
-      title: 'Tate McRae vibes',
-      matchPercentage: 96.5,
-      members: 25,
-      coverImage: 'https://images.unsplash.com/photo-1516575080821-d4c8d2b37f8d?w=400&h=400&fit=crop',
-      isUp: true
-    },
-    {
-      id: 4,
-      title: 'Kpop 2025',
-      matchPercentage: 85,
-      members: 10,
-      coverImage: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop',
-      isUp: true
-    },
-    {
-      id: 5,
-      title: 'Lexie vibes',
-      matchPercentage: 96.5,
-      members: 5,
-      coverImage: 'https://images.unsplash.com/photo-1516575080821-d4c8d2b37f8d?w=400&h=400&fit=crop',
-      isUp: true
-    }
-  ]);
+  const [jams, setJams] = useState([]);
+
+   useEffect(() => {
+    const getgroups = async () => {
+      let { data: groups, error } = await supabase
+        .from('groups')
+        .select('*');
+      console.log(groups);
+    };
+    getgroups();
+  }, [jams]);
 
   const handleCreateJam = () => {
     setIsCreateModalOpen(true);
