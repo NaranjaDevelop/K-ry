@@ -18,7 +18,7 @@ const Home = () => {
 
    useEffect(() => {
     const getgroups = async () => {
-      let { data: groups, error } = await supabase
+      const { data: groups, error } = await supabase
         .from('groups')
         .select('*');
       console.log(groups);
