@@ -9,11 +9,11 @@ interface SidebarProps {
 
 const Sidebar = ({ onCreateJam }: SidebarProps) => {
   const menuItems = [
-    { icon: Home, label: 'Home', active: true },
-    { icon: User, label: 'Profile', active: false },
-    { icon: LayoutGrid, label: 'My Jams', active: false },
-    { icon: Heart, label: 'Favorites', active: false },
-  ];
+  { icon: Home, label: 'Home', path: '/home' },
+  { icon: User, label: 'Profile', path: '/profile' },
+  { icon: LayoutGrid, label: 'My Jams', path: '/myjams' },
+  { icon: Heart, label: 'Favorites', path: '/favorites' },
+];
 
   return (
     <div className="fixed top-0 left-0 w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col z-50">
