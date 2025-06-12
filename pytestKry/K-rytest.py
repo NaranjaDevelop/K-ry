@@ -88,10 +88,42 @@ def postuser():
         data['data']['user_explicit']
     )
     return jsonify(userrecommended.to_dict(orient='records'), data['data']), 200
-    
-def compareusers():
-    UserP = request.get_json()
-    
+
+def compareusers(user_logged, user_proto):
+    # Calculate similarity score between two user profiles
+    # Example: Euclidean distance on selected features
+    features = [
+        'user_danceability', 'user_energy', 'user_instrumentalness',
+        'user_speechiness', 'user_tempo', 'user_loudness', 'user_valence'
+    ]
+    score = 0
+    for feat in features:
+        score += (user_logged.get(feat, 0) - user_proto.get(feat, 0)) ** 2
+    score = score ** 0.5
+
+    # Compare genres (intersection over union)
+    genres_logged = set(map(str.strip, str(user_logged.get('user_genre', '')).lower().split(',')))
+    genres_proto = set(map(str.strip, str(user_proto.get('user_genre', '')).lower().split(',')))
+    genre_similarity = len(genres_logged & genres_proto) / max(1, len(genres_logged | genres_proto))
+
+    # Compare explicit preference
+    explicit_match = user_logged.get('user_explicit') == user_proto.get('user_explicit')
+
+    return {
+        'distance_score': score,
+        'genre_similarity': genre_similarity,
+        'explicit_match': explicit_match
+    }
+
+
+@app.route("/compare", methods=["POST"])
+def compareusers_route():
+    Userstocompare = request.get_json()
+    if not Userstocompare or 'user_logged' not in Userstocompare or 'user_proto' not in Userstocompare:
+        return jsonify({'error': 'Invalid input'}), 400
+
+    result = compareusers(Userstocompare['user_logged'], Userstocompare['user_proto'])
+    return jsonify(result), 200
 
 
 app.run(host="0.0.0.0", port=5000)
