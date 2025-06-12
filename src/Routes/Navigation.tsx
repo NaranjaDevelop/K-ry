@@ -5,6 +5,7 @@ import Landing from "../Pages/Landing/Landing"
 import Auth from "../Pages/Login/Login"
 import Form from "../Pages/Form/Form"
 import MyJams from "../Pages/MyJams/MyJams"
+import Favorites from "../Pages/Favorites/Favorites"
 
 const routes = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const routes = createBrowserRouter([
     
     {
         path: "/favorites",
-        element: <div>Favorites</div>,
+        element: <Favorites />,
     },
 
 ])
