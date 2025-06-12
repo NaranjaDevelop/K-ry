@@ -3,7 +3,7 @@ import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import JamCard from '@/components/JamCard';
 import CreateJamModal from '@/components/CreateJamModal';
-import supabase from '@/services/supabase'; // asegúrate del path
+import supabase from '@/services/supabase'; 
 
 const MyJams = () => {
   const [jams, setJams] = useState([]);
@@ -11,7 +11,7 @@ const MyJams = () => {
 
   useEffect(() => {
     const fetchJoinedJams = async () => {
-      // 👇 Aquí luego va la lógica real de jams del usuario
+      // Aquí luego va la lógica real de jams del usuario
       let { data: groups, error } = await supabase
         .from('groups')
         .select('*');
@@ -39,7 +39,7 @@ const MyJams = () => {
         <main className="flex-1 p-8">
           {/* Title */}
           <div className="mb-10 text-left">
-            <h1 className="text-3xl font-bold">My Jams</h1>
+            <h1 className="text-2xl font-regular">My Jams</h1>
           </div>
 
           {/* Jam Cards Grid */}
