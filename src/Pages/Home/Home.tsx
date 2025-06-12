@@ -83,6 +83,7 @@ const Home = () => {
                 members={jam.users}
                 coverImage={jam.image}
                 isUp={jam.users.includes(user.user_name)}
+                id={jam.id}
               />
             ))}
           </div>

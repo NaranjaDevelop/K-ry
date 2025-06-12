@@ -1,5 +1,8 @@
 
 import { Plus, TrendingUp, TrendingDown } from 'lucide-react';
+import { joinGroup } from '../services/supabase';
+import { useSelector } from 'react-redux';
+import type { storeType } from '../store/store';
 
 interface JamCardProps {
   title: string;
@@ -7,14 +10,17 @@ interface JamCardProps {
   members: number;
   coverImage: string;
   isUp?: boolean;
+  id: number;
 }
 
-const JamCard = ({ title, matchPercentage, members, coverImage, isUp = true }: JamCardProps) => {
+const JamCard = ({ title, matchPercentage, members, coverImage, isUp = true, id }: JamCardProps) => {
   const getMatchColor = (percentage: number) => {
     if (percentage >= 80) return 'text-green-400';
     if (percentage >= 60) return 'text-yellow-400';
     return 'text-red-400';
   };
+
+  const user = useSelector((state: storeType) => state.user.user);
 
   const getArrowIcon = (isUp: boolean) => {
   return isUp ? (
@@ -23,6 +29,10 @@ const JamCard = ({ title, matchPercentage, members, coverImage, isUp = true }: J
     <TrendingDown size={16} className="text-red-400" />
   );
 };
+
+  const handleJoinGroup = () => {
+    joinGroup(id, user.user_name)
+  }
 
   const memberAvatars = Array.from({ length: Math.min(4, members) }, (_, i) => (
     <div
@@ -46,7 +56,7 @@ const JamCard = ({ title, matchPercentage, members, coverImage, isUp = true }: J
           
           {/* Plus Button */}
           <button className="absolute top-4 right-4 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/70">
-            <Plus size={16} className="text-white" />
+            <Plus size={16} className="text-white" onClick={() => handleJoinGroup()}/>
           </button>
         </div>
 

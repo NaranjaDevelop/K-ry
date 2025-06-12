@@ -76,7 +76,7 @@ export const createGroup = async (name: string, description: string, photo: stri
     return data;
 }
 
-export const joinGroup = async (groupId: string, username: string) => {
+export const joinGroup = async (groupId: number, username: string) => {
     const { data, error } = await supabase
         .from('groups')
         .select('users')
