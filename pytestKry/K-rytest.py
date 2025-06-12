@@ -89,7 +89,9 @@ def postuser():
     )
     return jsonify(userrecommended.to_dict(orient='records'), data['data']), 200
     
+def compareusers():
+    UserP = request.get_json()
+    
 
 
-
-app.run()
+app.run(host="0.0.0.0", port=5000)
