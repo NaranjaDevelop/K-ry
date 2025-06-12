@@ -1,11 +1,11 @@
-
+import logo from '../assets/K-RY.png';
 const Footer = () => {
   return (
     <footer className="py-16 px-8 border-t border-white/10">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <div className="text-white font-bold text-xl mb-4">spotlol</div>
+            <img src={logo} alt="" className="h-12 w-auto mb-6"/>
             <p className="text-white/60 text-sm leading-relaxed">
               A music that complies community of collaborative playlists. Share and listen to recommendations like never before: A modern and modern way to network to communicate platform.
             </p>
@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-white/10 pt-8 text-center text-white/40 text-sm">
-          <p>&copy; 2024 Spotlol. All rights reserved.</p>
+          <p>&copy; 2024 K-ry. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -41,7 +41,7 @@ const CallToAction = () => {
           </div>
         </div>
 
-        <div className="text-center mb-16 p-20">
+        <div className="text-center mb-16 pt-10">
           <div className="text-gray-400 mb-4">
             <img src={spotify} alt="" className="w-[131.652px] h-[36.059px] mx-auto " />
           </div>
@@ -53,32 +53,34 @@ const CallToAction = () => {
           </p>
         </div>
 
-        <div className="mb-16">
-          <h3 className="text-white/60 text-sm uppercase tracking-wider mb-8">How It Works</h3>
-          <h2 className="text-4xl font-bold text-white mb-12">Music that connects people instantly</h2>
+        <div className="mb-16 p-8">
+          <h3 className="text-white/60 text-lg  tracking-wider mb-8">How It Works</h3>
+          <h2 className="text-4xl font-bold text-white mb-4 max-w-xl">Music that connects people instantly</h2>
+          <p className="text-white/80 mb-2 max-w-80 text-lg">From personal preferences to group harmony —
+we turn your answers into one evolving playlist.</p>
 
-          <div className="space-y-8">
-            <div className="flex items-start space-x-6">
+          <div className="space-y-8 ml-[600px] -mt-40" >
+            <div className="flex items-start space-x-6 bg-[#181818] bg-opacity-50 rounded-xl p-6">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">1</div>
               <div>
                 <h4 className="text-white text-xl font-semibold mb-2">Do a simple form</h4>
-                <p className="text-white/70">Fill out a quick form about your music listening habits, and how you're feeling. It'll learn as you interact in more with the community you create.</p>
+                <p className="text-white/70">Fill out a quick form about your favorite genres, artists, and how you're feeling. This helps us understand your vibe.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-6">
+            <div className="flex items-start space-x-6 bg-[#181818] bg-opacity-50 rounded-xl p-6">
               <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">2</div>
               <div>
                 <h4 className="text-white text-xl font-semibold mb-2">Join a Group</h4>
-                <p className="text-white/70">Join others and discover your unique playlist. Or even create your own group bringing your favorite connections together.</p>
+                <p className="text-white/70">We show you channels that match your taste, or let you create your own. Each group has its own dynamic playlist.</p>
               </div>
             </div>
 
-            <div className="flex items-start space-x-6">
+            <div className="flex items-start space-x-6 bg-[#181818] bg-opacity-50 rounded-xl p-6">
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">3</div>
               <div>
                 <h4 className="text-white text-xl font-semibold mb-2">Get a smart playlist</h4>
-                <p className="text-white/70">Stream through or join a group. A personal mix of both old tags from your favorite patterns, discover that offers more harmonic sense.</p>
+                <p className="text-white/70">Get a playlist that reflects the collective mood  of your group. It updates automatically whenever someone joins.</p>
               </div>
             </div>
           </div>
@@ -89,9 +91,9 @@ const CallToAction = () => {
             Connect through music, starting on Telegram
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-            Access our intelligent music player on Telegram. A quick & free simple process does. Your tuned and library all sync up with the world's music is available. What's best is
+            Access our intelligent music bot on Telegram. Answer a few simple questions about your taste and mood, and we’ll match you with the perfect group and playlist — instantly.
           </p>
-          <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
+          <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-sm font-semibold transition-all duration-300 hover:scale-105">
             Start Now
           </Button>
         </div>
