@@ -5,12 +5,16 @@ import Header from '@/components/Header';
 import JamCard from '@/components/JamCard';
 import CreateJamModal from '@/components/CreateJamModal';
 import supabase from '../../services/supabase';
+import { useLocation } from 'react-router-dom';
 
 
 
 const Home = () => {
+  const location = useLocation()
+  console.log(location.state);
+  
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [jams, setJams] = useState([]);
+  const [jams, setJams] = useState<any[]>([]);
 
    useEffect(() => {
     const getgroups = async () => {
@@ -18,9 +22,11 @@ const Home = () => {
         .from('groups')
         .select('*');
       console.log(groups);
+      setJams(groups ?? [])
     };
     getgroups();
-  }, [jams]);
+
+  }, []);
 
   const handleCreateJam = () => {
     setIsCreateModalOpen(true);
@@ -30,12 +36,13 @@ const Home = () => {
     setIsCreateModalOpen(false);
   };
 
+
   const handleJamCreated = (jamData: { name: string; description: string }) => {
     const newJam = {
       id: jams.length + 1,
       title: jamData.name,
-      matchPercentage: Math.floor(Math.random() * 40) + 60, // Random percentage between 60-100
-      members: Math.floor(Math.random() * 20) + 5, // Random members between 5-25
+      matchPercentage: 0, // Random percentage between 60-100
+      members: [],
       coverImage: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop',
       isUp: true
     };
@@ -68,9 +75,9 @@ const Home = () => {
               <JamCard
               className="h-full"
                 key={jam.id}
-                title={jam.title}
+                title={jam.name}
                 matchPercentage={jam.matchPercentage}
-                members={jam.members}
+                members={jam.users}
                 coverImage={jam.coverImage}
                 isUp={jam.isUp}
               />
