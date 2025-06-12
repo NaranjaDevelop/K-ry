@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import user1 from "../assets/Ellipse 10.png";
 import user2 from "../assets/Ellipse 11.png";
@@ -86,14 +85,14 @@ we turn your answers into one evolving playlist.</p>
           </div>
         </div>
 
-        <div className="text-center bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-12">
+        <div className="text-center bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-12" >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Connect through music, starting on Telegram
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
             Access our intelligent music bot on Telegram. Answer a few simple questions about your taste and mood, and we’ll match you with the perfect group and playlist — instantly.
           </p>
-          <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-sm font-semibold transition-all duration-300 hover:scale-105">
+          <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-sm font-semibold transition-all duration-300 hover:scale-105" onClick={() => window.open("https://web.telegram.org/a/#7314161191", "_blank")}>
             Start Now
           </Button>
         </div>
