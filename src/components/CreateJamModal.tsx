@@ -1,8 +1,10 @@
 
 import { useState } from 'react';
-import { CircleX, Plus } from 'lucide-react';
+import { CircleX } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from './ui/input';
+import { useRef } from 'react';
+
 
 interface CreateJamModalProps {
   isOpen: boolean;
@@ -13,8 +15,25 @@ interface CreateJamModalProps {
 const CreateJamModal = ({ isOpen, onClose, onCreateJam }: CreateJamModalProps) => {
   const [jamName, setJamName] = useState('');
   const [jamDescription, setJamDescription] = useState('');
+  const [coverImage, setCoverImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
 
   if (!isOpen) return null;
+
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      console.log('Selected file:', file);
+      // Optionally handle the file (e.g., preview or upload)
+    }
+  };
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +63,7 @@ const CreateJamModal = ({ isOpen, onClose, onCreateJam }: CreateJamModalProps) =
           <div className="flex gap-6 mb-6">
             {/* Upload Cover */}
             <div className="flex-shrink-0">
-              <div className="w-48 h-48 bg-gray-700 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-600 transition-colors duration-200 group">
+              <div className="w-48 h-48 bg-gray-700 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-600 transition-colors duration-200 group" onClick={handleUploadClick} style={{ backgroundImage: coverImage ? `url(${coverImage})` : 'none', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gray-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-gray-500 transition-colors duration-200">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" className="text-gray-400">
@@ -55,6 +74,13 @@ const CreateJamModal = ({ isOpen, onClose, onCreateJam }: CreateJamModalProps) =
                 </div>
               </div>
             </div>
+
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+            />
 
             {/* Form Fields */}
             <div className="flex-1 space-y-6">
