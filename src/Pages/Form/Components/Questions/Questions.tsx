@@ -19,7 +19,6 @@ const Question: React.FC<QuestionProps> = ({ currentNumber, text, instruction })
             <div className="question-text">
                 <h2>{text}</h2>
                 <p className="question-instruction">{instruction}</p>    
-                <img src="" alt="Question Illustration"/>
             </div>
         </div>
     );
