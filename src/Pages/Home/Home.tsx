@@ -62,7 +62,7 @@ const Home = () => {
         <main className="flex-1 p-8">
           <div className="mb-10 text-left ">
             <h1 className="text-3xl font-bold mb-2">
-              Hi <span className="text-purple-400">User 123</span>
+              Hi <span className="text-purple-400">{user.user_name}</span>
             </h1>
             <p className="text-gray-400 text-lg">Ready to vibe? Create or join a jam</p>
           </div>

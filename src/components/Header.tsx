@@ -1,8 +1,12 @@
 import { BellDot, User, Settings } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import type { storeType } from '../store/store';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const location = useLocation();
+
+  const user = useSelector((state: storeType) => state.user.user)
 
   const getPageTitle = (pathname: string) => {
     if (pathname.includes('/favorites')) return 'Favorites';
@@ -39,7 +43,7 @@ const Header = () => {
             <User size={16} className="text-white" />
           </div>
           <div className="flex items-center gap-1">
-            <span className="text-white font-medium">User123_4ever</span>
+            <span className="text-white font-medium">{user.user_name}</span>
             <svg
               width="16"
               height="16"
