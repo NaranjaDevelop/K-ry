@@ -8,12 +8,12 @@
 }
 
 .answer-option.selected {
-    background-color: #D7F177; /* Color verde cuando está seleccionado */
+    background-color: #8644DB; /* Color verde cuando está seleccionado */
 }
 
 
 .answer-option:hover{
-    background-color: #D7F177;
+    background-color: #8644DB;
     border-radius: 31px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     transform: translateY(-20px); /* Mueve la tarjeta 10px hacia arriba */
@@ -35,7 +35,7 @@
 }
 
 .answer-option p:hover{
-    color: #234e03;
+    color: #2a034e;
 }
 
 .answer-option img{
