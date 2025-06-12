@@ -1,7 +1,6 @@
 import pandas as pd
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from dotenv import load_dotenv
 import os
 from os.path import join, dirname
 from supabase import Client, create_client
@@ -9,7 +8,6 @@ from supabase import Client, create_client
 
 app = Flask(__name__)
 dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
 ultrasecretkey = os.environ.get("SUPABASEKEY_PY")
 ultrasecreturl = os.environ.get("SUPABASEURL_PY")
 supabase: Client = create_client("https://icabjgwodrysbrwrraxg.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljYWJqZ3dvZHJ5c2Jyd3JyYXhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4ODAyNzMsImV4cCI6MjA2MzQ1NjI3M30.580CcYX4GCffjdRZgRy1xs4Hz-69zY-Zvj9TjPxtn90")
@@ -67,6 +65,103 @@ def recommend_songs(df , user_danceability, user_energy, user_genre, user_instru
 @app.route('/', methods=['GET'])
 def getuser():
     return "<p>Hello, World!</p>"
+
+
+@app.route('/updateproto', methods=['POST'])
+def update_group_proto():
+    payload = request.get_json()
+    username = payload.get("username")
+    group_id = payload.get("groupId")
+
+    if not username or not isinstance(group_id, int):
+        return jsonify({'error': 'Invalid input'}), 400
+
+    # Fetch group by ID
+    group_response = supabase.table('groups').select('*').eq('id', group_id).single().execute()
+    if not group_response.data:
+        return jsonify({'error': 'Group not found'}), 404
+
+    group = group_response.data
+    usernames = group.get("usernames") or []
+
+    # Update usernames array
+    if username in usernames:
+        usernames.remove(username)
+    else:
+        usernames.append(username)
+
+    # Fetch user data for all usernames
+    user_rows = supabase.table('users').select('*').in_('username', usernames).execute().data
+    if not user_rows:
+        return jsonify({'error': 'No users found'}), 404
+
+    # Aggregate protoperson fields
+    fields = ['dance', 'tempo', 'valence', 'loudness', 'speech', 'instrumental', 'energy']
+    protoperson = {f'user_{f}': 0.0 for f in fields}
+    protoperson['user_explicit'] = 0
+    genre_union = set()
+
+    for row in user_rows:
+        for f in fields:
+            protoperson[f'user_{f}'] += float(row.get(f, 0.0))
+        protoperson['user_explicit'] += int(bool(row.get('explicit')))
+        genres = row.get('genres') or []
+        genre_union.update(map(str.strip, genres))
+
+    count = len(user_rows)
+    for f in fields:
+        protoperson[f'user_{f}'] = str(protoperson[f'user_{f}'] / count)
+
+    protoperson['user_explicit'] = str(round(protoperson['user_explicit'] / count))
+    protoperson['user_genre'] = list(genre_union)
+
+    # Call recommend_songs
+    rec_df = recommend_songs(
+        df,
+        float(protoperson['user_dance']),
+        float(protoperson['user_energy']),
+        ','.join(protoperson['user_genre']),
+        float(protoperson['user_instrumental']),
+        float(protoperson['user_speech']),
+        float(protoperson['user_tempo']),
+        float(protoperson['user_loudness']),
+        float(protoperson['user_valence']),
+        bool(int(protoperson['user_explicit']))
+    )
+    recommended_songs = rec_df.to_dict(orient='records')
+
+    # Prepare update payload for group
+    update_payload = {
+        'users': usernames,
+        'songs': recommended_songs,
+        'genres': protoperson['user_genre']
+    }
+
+    # Map user fields to group fields
+    field_mapping = {
+        'dance': 'danceability',
+        'speech': 'speechiness',
+        'instrumental': 'instrumentalness',
+        'tempo': 'tempo',
+        'valence': 'valence',
+        'loudness': 'loudness',
+        'energy': 'energy'
+    }
+    for user_key, group_key in field_mapping.items():
+        update_payload[group_key] = protoperson[f'user_{user_key}']
+
+    update_payload['explicit'] = protoperson['user_explicit']
+
+    # Update group
+    supabase.table('groups').update(update_payload).eq('id', group_id).execute()
+
+    return jsonify({
+        'protoperson': protoperson,
+        'recommended_songs': recommended_songs,
+        'updated_group': update_payload
+    }), 200
+
+
     
 
 
