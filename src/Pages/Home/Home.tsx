@@ -4,7 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from '@/components/Header';
 import JamCard from '@/components/JamCard';
 import CreateJamModal from '@/components/CreateJamModal';
-import supabase from '../../services/supabase';
+import supabase from '../../services/supaConfig';
 
 
 
