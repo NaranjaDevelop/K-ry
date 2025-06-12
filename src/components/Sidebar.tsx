@@ -1,7 +1,7 @@
-import { useNavigate, useLocation } from "react-router-dom";
 import Logo from '../assets/K-RY.png';
-import { Home, User, LayoutGrid, Heart, Plus, CircleX  } from 'lucide-react';
+import { Home, User, LayoutGrid, Heart, Plus, CircleX } from 'lucide-react';
 import { Button } from '../components/ui/button';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface SidebarProps {
   onCreateJam: () => void;
@@ -10,6 +10,13 @@ interface SidebarProps {
 const Sidebar = ({ onCreateJam }: SidebarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const menuItems = [
+    { icon: Home, label: 'Home', path: '/home' },
+    { icon: User, label: 'Profile', path: '/profile' }, // Placeholder si no tenés aún
+    { icon: LayoutGrid, label: 'My Jams', path: '/myjams' },
+    { icon: Heart, label: 'Favorites', path: '/favorites' },
+  ];
 
   return (
     <div className="fixed top-0 left-0 w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col z-50">
@@ -22,7 +29,8 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
       <nav className="flex-1 px-4">
         <ul className="space-y-2">
           {menuItems.map((item, index) => {
-            const isActive = location.pathname.toLowerCase() === item.path.toLowerCase();
+            const isActive =
+              location.pathname.toLowerCase() === item.path.toLowerCase();
 
             return (
               <li key={index}>
@@ -68,5 +76,5 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
   );
 };
 
-
 export default Sidebar;
+
