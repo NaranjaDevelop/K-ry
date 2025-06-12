@@ -1,11 +1,11 @@
-
+import imagen from "../assets/K-RY.png";
 import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
   return (
     <nav className="flex items-center justify-between px-8 py-6 relative z-10">
       <div className="flex items-center space-x-8">
-        <div className="text-white font-bold text-xl">spotlol</div>
+        <img src={imagen} alt="logo" className="h-12 w-auto"/>
         <div className="hidden md:flex space-x-6 text-white/80">
           <a href="#" className="hover:text-white transition-colors">Home</a>
           <a href="#" className="hover:text-white transition-colors">How it Works</a>
@@ -18,7 +18,7 @@ const Navigation = () => {
         <Button variant="ghost" className="text-white hover:text-white hover:bg-white/10">
           Log In
         </Button>
-        <Button className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full transition-all duration-300 hover:scale-105">
+        <Button className="bg-[#FF08CE] hover:bg-pink-600 text-white px-6 py-2 rounded transition-all duration-300 hover:scale-105">
           Sign Up
         </Button>
       </div>

@@ -1,6 +1,7 @@
 
 import Navigation from "./Navigation";
-import ProfileCard from "./ProfileCard";
+import banner from "../assets/imagen banner.png"; // Assuming you have a banner image
+import { Button } from "./ui/button";
 
 const Hero = () => {
   return (
@@ -16,39 +17,24 @@ const Hero = () => {
         <p className="text-xl text-white/70 text-center mb-12 max-w-2xl">
           Connect with friends and like-minded people and build playlists that fit the community vibe.
         </p>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 w-full max-w-4xl">
-          <ProfileCard 
-            image="/lovable-uploads/8705d649-ac2f-4195-a3a9-1e47505f9c5c.png"
-            bgColor="bg-orange-500"
-            delay="0"
-          />
-          <ProfileCard 
-            image="/lovable-uploads/8705d649-ac2f-4195-a3a9-1e47505f9c5c.png"
-            bgColor="bg-pink-500"
-            delay="0.1"
-          />
-          <ProfileCard 
-            image="/lovable-uploads/8705d649-ac2f-4195-a3a9-1e47505f9c5c.png"
-            bgColor="bg-purple-500"
-            delay="0.2"
-          />
-          <ProfileCard 
-            image="/lovable-uploads/8705d649-ac2f-4195-a3a9-1e47505f9c5c.png"
-            bgColor="bg-green-500"
-            delay="0.3"
-          />
+
+
+        <div className="inline-flex items-center space-x-4 mb-8">
+          <img src={banner} alt="imagen-banner" />
         </div>
         
         <div className="text-center">
-          <div className="inline-flex items-center space-x-2 text-white/60 mb-4">
+          <div className="inline-flex flex-col items-center space-x-2 gap-y-12 text-white/60 mb-4">
+          <Button variant="outline" className="text-white hover:text-white hover:bg-white/10">
+                      Start your vibe now!
+                    </Button>
             <div className="flex -space-x-2">
-              <div className="w-8 h-8 rounded-full bg-orange-500 border-2 border-white"></div>
-              <div className="w-8 h-8 rounded-full bg-pink-500 border-2 border-white"></div>
-              <div className="w-8 h-8 rounded-full bg-purple-500 border-2 border-white"></div>
+              <div className="w-8 h-8 rounded-full bg-[#41DF82] border-2 border-white"></div>
+              <div className="w-8 h-8 rounded-full bg-[#FF08CE] border-2 border-white"></div>
+              <div className="w-8 h-8 rounded-full bg-[#694AFF] border-2 border-white"></div>
             </div>
+            
           </div>
-          <p className="text-white/60">Start following new</p>
         </div>
       </div>
     </div>

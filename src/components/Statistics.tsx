@@ -1,10 +1,10 @@
 
 const Statistics = () => {
   const stats = [
-    { number: "4.7", label: "Average rating on App Store" },
-    { number: "92%", label: "Higher streaming & Plays on Spotify" },
-    { number: "100+", label: "Playlists algorithmically curated" },
-    { number: "+10", label: "Artists ready to become fans" }
+    { number: "4.7", label: "Average user satisfaction" },
+    { number: "92%", label: "Match accuracy in group playlists" },
+    { number: "100+", label: "Playlists dinamically updated" },
+    { number: "+10", label: "Music Genres to choose from" }
   ];
 
   return (
@@ -16,7 +16,7 @@ const Statistics = () => {
               <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                 {stat.number}
               </div>
-              <div className="text-white/60 text-sm leading-tight">
+              <div className="text-white/60 text-lg leading-tight font-light">
                 {stat.label}
               </div>
             </div>
