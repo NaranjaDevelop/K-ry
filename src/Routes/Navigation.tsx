@@ -3,6 +3,7 @@ import Home from "../Pages/Home/Home"
 import Details from "../Pages/Details/Details"
 import Landing from "../Pages/Landing/Landing"
 import Auth from "../Pages/Login/Login"
+import MyJams from "../Pages/MyJams/MyJams"
 
 const routes = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const routes = createBrowserRouter([
     },
      {
         path: "/Myjams",
-        element: <div>MyjamsPage</div>,
+        element: <MyJams />,
     },
     
     {
