@@ -69,7 +69,7 @@ const MyJams = () => {
           {/* Created by You */}
           <div className="mb-12">
             <h2 className="text-2xl mb-4">Created by You</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 h-full">
               {loading
                 ? Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
                 : createdJams.length > 0 ? (
