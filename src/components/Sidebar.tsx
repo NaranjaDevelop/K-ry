@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import Logo from '../assets/K-RY.png';
 import { Home, User, LayoutGrid, Heart, Plus, CircleX  } from 'lucide-react';
 import { Button } from '../components/ui/button';
