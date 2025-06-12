@@ -8,38 +8,38 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ onCreateJam }: SidebarProps) => {
-  const menuItems = [
-  { icon: Home, label: 'Home', path: '/home' },
-  { icon: User, label: 'Profile', path: '/profile' },
-  { icon: LayoutGrid, label: 'My Jams', path: '/myjams' },
-  { icon: Heart, label: 'Favorites', path: '/favorites' },
-];
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="fixed top-0 left-0 w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col z-50">
       {/* Logo */}
       <div className="p-6">
-         <img src={Logo} alt="K-RY Logo" className="h-10 w-auto" />
-        
+        <img src={Logo} alt="K-RY Logo" className="h-10 w-auto" />
       </div>
 
       {/* Navigation */}
       <nav className="flex-1 px-4">
         <ul className="space-y-2">
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <button
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${
-                  item.active
-                    ? 'bg-purple-600 text-white'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800'
-                }`}
-              >
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </button>
-            </li>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = location.pathname.toLowerCase() === item.path.toLowerCase();
+
+            return (
+              <li key={index}>
+                <button
+                  onClick={() => navigate(item.path)}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${
+                    isActive
+                      ? 'bg-purple-600 text-white'
+                      : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                  }`}
+                >
+                  <item.icon size={20} />
+                  <span>{item.label}</span>
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
@@ -67,5 +67,6 @@ const Sidebar = ({ onCreateJam }: SidebarProps) => {
     </div>
   );
 };
+
 
 export default Sidebar;
