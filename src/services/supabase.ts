@@ -246,3 +246,4 @@ export const updateSongs = async (group: unknown) => {
         throw error;
     }
 }
+export  default supabase
