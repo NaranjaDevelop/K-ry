@@ -7,6 +7,7 @@ interface AnswerOptionProps {
     Onselect: () => void;
 }
 
+
 //aqui debe haber un map de esta respuesta para que se muestren todas las opciones desde firebase
 const AnswerOption: React.FC<AnswerOptionProps> = ({ text, Onselect, isSelected, iconSrc }) => {
     return (

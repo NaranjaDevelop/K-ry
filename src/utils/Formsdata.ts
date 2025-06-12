@@ -66,7 +66,7 @@ const dataform =  {
     },
     {
       "id": 6,
-      "pregunta": "7. ¿Te molesta que las canciones tengan lenguaje explícito (groserías, etc.)?",
+      "pregunta": "6. ¿Te molesta que las canciones tengan lenguaje explícito (groserías, etc.)?",
       "asocia": ["explicit"],
       "opciones": [
         { "texto": "Sí, prefiero evitarlas", "explicit": false,  "icon": mutehead },

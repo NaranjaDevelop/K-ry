@@ -12,7 +12,7 @@ const Header = ({goback}: Props) => {
     <header>
         <div>
 
-        <img src={Logo} alt="K-RY Logo" className="h-10 w-auto" onClick={goback} />
+        <img className= "header" src={Logo} alt="K-ry" onClick={goback} />
         </div>
     </header>
     );
