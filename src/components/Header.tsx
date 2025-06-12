@@ -1,18 +1,31 @@
-
 import { BellDot, User, Settings } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+
+  const getPageTitle = (pathname: string) => {
+    if (pathname.includes('/favorites')) return 'Favorites';
+    if (pathname.includes('/myjams')) return 'My Jams';
+    if (pathname.includes('/details')) return 'Details';
+    if (pathname.includes('/profile')) return 'Profile';
+    if (pathname.includes('/home')) return 'Home';
+    return 'Dashboard';
+  };
+
+  const pageTitle = getPageTitle(location.pathname);
+
   return (
     <header className="h-16 bg-gray-900 border-b border-gray-800 flex items-center justify-between px-6">
       <div>
-        <h2 className="text-xl font-semibold text-white">Home</h2>
+        <h2 className="text-xl font-semibold text-white">{pageTitle}</h2>
       </div>
-      
+
       <div className="flex items-center gap-4">
         {/* Settings */}
         <button className="p-2 text-gray-400 hover:text-white transition-colors duration-200">
-  <Settings size={20} />
-</button>
+          <Settings size={20} />
+        </button>
 
         {/* Notifications */}
         <button className="p-2 text-gray-400 hover:text-white transition-colors duration-200 relative">
@@ -27,8 +40,14 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-1">
             <span className="text-white font-medium">User123_4ever</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-gray-400">
-              <path d="M7 10l5 5 5-5z"/>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="text-gray-400"
+            >
+              <path d="M7 10l5 5 5-5z" />
             </svg>
           </div>
         </div>

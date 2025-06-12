@@ -6,7 +6,7 @@ import { useForm } from '../../Hooks/FormHooks';
 import AnswerOption from './Components/Answers/Answers';
 
 import CheckboxAnswerOption from './Components/Checkbox/Checkbox';
-
+import logo from '../../assets/K-RY.png'
 
 
 
@@ -18,28 +18,16 @@ const Form: React.FC = () => {
       
       <Header goback={goback}  />
       <Question 
-        currentNumber={"Question " + (generalIndex + 0)}
+        currentNumber={"pregunta " + (generalIndex + 1)}
         text={questions.length > 0 ? questions[questionIndex].pregunta : ""}
         instruction={"Select an answer"}
-        imageSrc="" 
+        imageSrc={logo} 
         questionIndicator="/path/to/indicator.png"
       />
 
       <div className="answers">
 
-        {questions[questionIndex]?.id === 9 ? (
-          <div className="checkbox-container"> 
-            {optionss.map((option: any, index: number) => (
-              <CheckboxAnswerOption
-                key={index}
-                text={option.texto}
-                isSelected={Array.isArray(selectedAnswer) && selectedAnswer.includes(index)}
-                onChange={() => handleselectedAnswer(index)} 
-              />
-            ))}
-          </div>
-        ) : questionIndex < 11 ? (
-          optionss.map((option: any, index: number) => (
+        { optionss.map((option: any, index: number) => (
             <AnswerOption
               Onselect={() => handleselectedAnswer(index)}
               isSelected={selectedAnswer === index}
@@ -48,9 +36,7 @@ const Form: React.FC = () => {
               iconSrc={option.icon}
             />
           ))
-        ) : (
-          <input type="text" className='text-imput' placeholder='Type your other concerns here' />
-        )}
+        }
       </div>
 
       <NavigationButtons Plusindex={handleNext} Minusindex={handlePrevious} />
