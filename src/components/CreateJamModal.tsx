@@ -4,6 +4,7 @@ import { CircleX } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from './ui/input';
 import { useRef } from 'react';
+import { getImageUrl } from '../services/supabase';
 
 
 interface CreateJamModalProps {
@@ -26,11 +27,15 @@ const CreateJamModal = ({ isOpen, onClose, onCreateJam }: CreateJamModalProps) =
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       console.log('Selected file:', file);
-      // Optionally handle the file (e.g., preview or upload)
+      
+      const url = await getImageUrl(file)
+
+      console.log('Image URL:', url);
+      setCoverImage(url);
     }
   };
 
