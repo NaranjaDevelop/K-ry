@@ -64,7 +64,7 @@ const MyJams = () => {
       <div className="flex-1 pl-64">
         <Header />
 
-        <main className="flex-1 p-8 overflow-y-auto min-h-screen bg-gray-950">
+        <main className="flex-1 p-8">
 
           {/* Created by You */}
           <div className="mb-12">
