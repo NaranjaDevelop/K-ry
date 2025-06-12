@@ -1,3 +1,7 @@
+import starface from '../assets/Q1/starface.png';
+import sad from '../assets/Q1/sad02.png';
+import calm from '../assets/Q1/relieved01.png';
+import cool from '../assets/Q1/sunglasses.png';
 const dataform =  {
   "formulario": [
     {
@@ -6,10 +10,10 @@ const dataform =  {
       "pregunta": "1. Si tuvieras que elegir una vibra musical para acompañarte hoy, ¿cuál elegirías?",
       "asocia": ["valence", "track_genre"],
       "opciones": [
-        { "texto": "Una canción feliz y energética para motivarme 🎉 🎉", "valence": 0.9, "track_genre": "pop", "icon": "/assets/Q1/starface.png" },
-        { "texto": "Algo relajante y suave para calmarme 🌿", "valence": 0.4, "track_genre": "ambient" },
-        { "texto": "Música intensa o emocional para liberar tensiones 💔", "valence": 0.2, "track_genre": "rock" },
-        { "texto": "Solo quiero ritmo y flow para bailar 🕺", "valence": 0.8, "track_genre": "dance" }
+        { "texto": "Una canción feliz y energética para motivarme 🎉 🎉", "valence": 0.9, "track_genre": "pop", "icon": starface },
+        { "texto": "Algo relajante y suave para calmarme 🌿", "valence": 0.4, "track_genre": "ambient", "icon": sad },
+        { "texto": "Música intensa o emocional para liberar tensiones 💔", "valence": 0.2, "track_genre": "rock", "icon": calm },
+        { "texto": "Solo quiero ritmo y flow para bailar 🕺", "valence": 0.8, "track_genre": "dance", "icon": cool }
       ]
     },
     {
