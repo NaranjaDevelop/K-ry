@@ -1,5 +1,5 @@
 import '../FormHeader/Header.css';
-
+import logo from '../../../../assets/K-RY.png'
 interface Props {
 
     goback: () => void;
@@ -12,7 +12,7 @@ const Header = ({goback}: Props) => {
     <header>
         <div>
 
-        <img className= "header" src="" alt="K-ry" onClick={goback} />
+        <img className= "header" src={logo} alt="K-ry" onClick={goback} />
         </div>
     </header>
     );

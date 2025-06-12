@@ -41,7 +41,7 @@ const Home = () => {
     const newJam = {
       id: jams.length + 1,
       title: jamData.name,
-      matchPercentage: 0, // Random percentage between 60-100
+      matchPercentage: 0, 
       members: [],
       coverImage: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop',
       isUp: true
@@ -51,17 +51,12 @@ const Home = () => {
 
   return (
     <div className="bg-gray-950 text-white flex min-h-screen w-screen">
-      {/* Sidebar */}
       <Sidebar onCreateJam={handleCreateJam} className="h-screen" />
 
-      {/* Main Content */}
       <div className="flex-1 pl-64">
-        {/* Header */}
         <Header />
 
-        {/* Main Content Area */}
         <main className="flex-1 p-8">
-          {/* Welcome Section */}
           <div className="mb-10 text-left ">
             <h1 className="text-3xl font-bold mb-2">
               Hi <span className="text-purple-400">User 123</span>
@@ -69,7 +64,6 @@ const Home = () => {
             <p className="text-gray-400 text-lg">Ready to vibe? Create or join a jam</p>
           </div>
 
-          {/* Jams Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 h-full">
             {jams.map((jam) => (
               <JamCard
@@ -86,7 +80,6 @@ const Home = () => {
         </main>
       </div>
 
-      {/* Create Jam Modal */}
       <CreateJamModal
         isOpen={isCreateModalOpen}
         onClose={handleCloseModal}

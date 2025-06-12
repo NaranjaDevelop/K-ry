@@ -14,8 +14,7 @@ const Question: React.FC<QuestionProps> = ({ currentNumber, text, instruction })
     return (
         <div className="question-container">
             <div className="question-indicator">
-                <img src="" alt="Question Indicator" />
-                <p className="question-number">{currentNumber}</p>
+                <p className="question-number">{currentNumber} de 6</p>
             </div>
             <div className="question-text">
                 <h2>{text}</h2>
