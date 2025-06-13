@@ -1,16 +1,20 @@
 
-const GenreTags = () => {
-  const genres = [
-    { name: "Hip Hop", color: "bg-blue-500" },
-    { name: "Modern Pop", color: "bg-orange-500" },
-    { name: "Alternative Rock", color: "bg-green-500" },
-    { name: "R&B", color: "bg-pink-500" },
-    { name: "KPOP", color: "bg-purple-600" },
-    { name: "Rock", color: "bg-orange-600" },
-    { name: "Opera", color: "bg-blue-600" },
-    { name: "Classical Jazz", color: "bg-green-400" },
-    { name: "Blues", color: "bg-purple-500" }
-  ];
+const GenreTags = (tags: {tags: string[]}) => {
+  const colors = [
+    "bg-blue-500",
+    "bg-orange-500",
+    "bg-green-500",
+    "bg-pink-500",
+    "bg-purple-600",
+    "bg-orange-600",
+    "bg-blue-600",
+    "bg-green-400",
+    "bg-purple-500"
+  ]
+  const genres = tags.tags.map((tag, index) => ({
+    name: tag,
+    color: colors[index % colors.length]
+  }))
 
   return (
     <div className="bg-gray-900/50 rounded-lg p-6 max-w-xs">

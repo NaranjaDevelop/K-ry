@@ -56,7 +56,7 @@ const Details = () => {
               <SongsList onToggleFavorite={handleFavorite}/>
             </div>
             <div className="lg:col-span-1 ">
-              <GenreTags />
+              <GenreTags tags={jams[0]?.genres || []}/>
             </div>
           </div>
         </main>
