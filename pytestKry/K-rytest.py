@@ -16,7 +16,10 @@ supabase: Client = create_client("https://icabjgwodrysbrwrraxg.supabase.co", "ey
 CORS(app)
 
 
-df = pd.read_csv(r'Music.csv', on_bad_lines='skip', low_memory=False)
+csv_path = os.path.join(os.path.dirname(__file__), 'data', 'music.csv')
+if not os.path.exists(csv_path):
+    raise FileNotFoundError(f"CSV file not found at {csv_path}")
+df = pd.read_csv(csv_path, on_bad_lines='skip', low_memory=False)
 
 df.columns = df.columns.str.strip().str.replace(';', '')
 df["track_genre"] = df["track_genre"].str.replace(';', '') 
@@ -82,7 +85,7 @@ def update_group_proto():
         return jsonify({'error': 'Group not found'}), 404
 
     group = group_response.data
-    usernames = group.get("usernames") or []
+    usernames = group.get("users") or []
 
     # Update usernames array
     if username in usernames:
@@ -98,6 +101,7 @@ def update_group_proto():
     # Aggregate protoperson fields
     fields = ['dance', 'tempo', 'valence', 'loudness', 'speech', 'instrumental', 'energy']
     protoperson = {f'user_{f}': 0.0 for f in fields}
+    
     protoperson['user_explicit'] = 0
     genre_union = set()
 
@@ -114,6 +118,7 @@ def update_group_proto():
 
     protoperson['user_explicit'] = str(round(protoperson['user_explicit'] / count))
     protoperson['user_genre'] = list(genre_union)
+    print(protoperson)
 
     # Call recommend_songs
     rec_df = recommend_songs(
@@ -136,6 +141,7 @@ def update_group_proto():
         'songs': recommended_songs,
         'genres': protoperson['user_genre']
     }
+    print(update_payload)
 
     # Map user fields to group fields
     field_mapping = {
@@ -149,9 +155,8 @@ def update_group_proto():
     }
     for user_key, group_key in field_mapping.items():
         update_payload[group_key] = protoperson[f'user_{user_key}']
-
+    
     update_payload['explicit'] = protoperson['user_explicit']
-
     # Update group
     supabase.table('groups').update(update_payload).eq('id', group_id).execute()
 
@@ -221,4 +226,4 @@ def compareusers_route():
     return jsonify(result), 200
 
 
-app.run(host="0.0.0.0", port=5000)
+app.run(host="0.0.0.0", port=5000, debug="True")
