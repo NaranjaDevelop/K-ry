@@ -18,10 +18,10 @@ const Navigation = () => {
         </div>
       </div>
       <div className="flex items-center space-x-4">
-        <Button variant="ghost" className="text-white hover:text-white hover:bg-white/10" onClick={() => navigate("/login")}>
+        <Button variant="ghost" className="text-white hover:text-white hover:bg-white/10" onClick={() => navigate('/login',{state: {login: true}})}>
           Log In
         </Button>
-        <Button className="bg-[#FF08CE] hover:bg-pink-600 text-white px-6 py-2 rounded transition-all duration-300 hover:scale-105" onClick={() => navigate("/login")}>
+        <Button className="bg-[#FF08CE] hover:bg-pink-600 text-white px-6 py-2 rounded transition-all duration-300 hover:scale-105" onClick={() => navigate('/login',{state: {login: false}})}>
           Sign Up
         </Button>
       </div>
