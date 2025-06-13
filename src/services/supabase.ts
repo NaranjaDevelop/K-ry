@@ -73,6 +73,8 @@ export const createGroup = async (name: string, description: string, photo: stri
         throw error;
     }
 
+    console.log("Group created:", data);
+
     joinGroup(data[0].id, users[0]);
 
     return data;
@@ -80,7 +82,7 @@ export const createGroup = async (name: string, description: string, photo: stri
 
 export const joinGroup = async (groupId: number, username: string) => {
     try {
-         const response = await fetch("https://k-ry.onrender.com//updateproto", {
+         const response = await fetch("https://k-ry.onrender.com/updateproto", {
             method: "POST",
             headers: {
             "Content-Type": "application/json"
