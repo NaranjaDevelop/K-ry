@@ -2,36 +2,23 @@ import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import SongsList from "@/components/SongsList";
+import { useSelector } from "react-redux";
+import { useAppDispatch, type storeType } from "../../store/store";
+import type { Song } from "../../Types/Interfaces";
+import { favoriteSong } from "../../services/supabase";
+import { setFavs } from "../../store/slice";
 
-const mockSongs = [
-  {
-    id: 1,
-    title: "exes",
-    artist: "Tate McRae",
-    album: "Think Later",
-    duration: "3:25",
-    artwork: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=50&h=50&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Silent Cry",
-    artist: "Stray Kids",
-    album: "Noeasy",
-    duration: "3:19",
-    artwork: "https://i.scdn.co/image/ab67616d0000b2731843897a2a72dd5036bbb1fc"
-  }
-];
 
 const Favorites = () => {
-  const [favorites, setFavorites] = useState<number[]>(mockSongs.map((s) => s.id)); 
 
-  const handleToggleFavorite = (songId: number) => {
-    setFavorites((prev) =>
-      prev.includes(songId)
-        ? prev.filter((id) => id !== songId) 
-        : [...prev, songId] 
-    );
-  };
+  const favs = useSelector((state: storeType) => state.user.user.user_favorites) || [];
+  const username = useSelector((state: storeType) => state.user.user.user_name) || "";
+  const dispatch = useAppDispatch();
+
+  const handleAddFavorite = async (songId: Song) => {
+      const {favs} = await favoriteSong(songId, username)
+      dispatch(setFavs({favorites: favs || []}));
+    }
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex w-screen">
@@ -44,10 +31,10 @@ const Favorites = () => {
           <h1 className="text-2xl  mb-8">My Favorites Songs</h1>
 
           <SongsList
-            songs={mockSongs}
+            songs={favs}
             title="Liked Songs"
-            favorites={favorites}
-            onToggleFavorite={handleToggleFavorite}
+            favorites={favs.map((f) => f.track_id) || []}
+            onToggleFavorite={handleAddFavorite}
           />
         </main>
       </div>
