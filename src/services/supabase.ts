@@ -1,4 +1,4 @@
-import type { Group, Song, SupaUserTastes } from "../Types/Interfaces";
+import type { Group, Song, SupaUserTastes, userinterface } from "../Types/Interfaces";
 import supabase from "./supaConfig";
 
 export default supabase;
@@ -46,15 +46,21 @@ export const getAllGroups = async (username: string) => {
     const otherGroups: Group[] = []
     const joinedGroups: Group[] = []
 
-    data.forEach(group => {
-        if (group.users[0] === username) {
-            userGroups.push(group);
-        } else if (group.users.includes(username)) {
-            joinedGroups.push(group);
+    data.forEach((group: Group) => {
+        const percentage = Math.floor(Math.random() * 100);
+        const newGroup: Group = {
+            ...group,
+            matchPercentage: percentage
+        }
+        if (group.users.includes(username)) {
+            joinedGroups.push(newGroup);
+        } else if (group.users.length > 0) {
+            otherGroups.push(newGroup);
         } else {
-            otherGroups.push(group);
+            userGroups.push(newGroup);
         }
     });
+
 
     return {
         userGroups,
@@ -181,4 +187,58 @@ export const updateTastes = async (username: string, tastes: SupaUserTastes) => 
     }
 
     return { success: true };
+}
+
+export const compareUsers = async (user: userinterface, group: Group) => {
+
+    //'user_danceability', 'user_energy', 'user_instrumentalness','user_speechiness', 'user_tempo', 'user_loudness', 'user_valence'
+
+    const user_logged = {
+        user_danceability: user.user_danceability || 0,
+        user_energy: user.user_energy || 0,
+        user_instrumentalness: user.user_instrumentalness || 0,
+        user_speechiness: user.user_speechiness || 0,
+        user_tempo: user.user_tempo || 0,
+        user_loudness: user.user_loudness || 0,
+        user_valence: user.user_valence || 0,
+    }
+
+    const user_proto = {
+        user_danceability: group.danceability || 0,
+        user_energy: group.energy || 0,
+        user_instrumentalness: group.instrumentalness || 0,
+        user_speechiness: group.speechiness || 0,
+        user_tempo: group.tempo || 0,
+        user_loudness: group.loudness || 0,
+        user_valence:group.valence || 0,
+    }
+
+    try {
+         const response = await fetch("https://k-ry.onrender.com/compare", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+            user_logged, user_proto
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Failed to update group");
+        }
+
+        const result = await response.json();
+        console.log(result); 
+
+        console.log("Distance score:", result.distance_score);
+
+        return result.distance_score
+
+    } catch (error) {
+        console.error("Error comparing users:", error);
+        throw error;
+    }
+
 }

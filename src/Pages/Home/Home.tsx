@@ -76,7 +76,7 @@ const Home = () => {
                 matchPercentage={jam.matchPercentage}
                 members={jam.users.length}
                 coverImage={jam.image}
-                isUp={jam.users.includes(user.user_name)}
+                isUp={jam?.matchPercentage ? jam.matchPercentage > 50 : true}
                 id={jam.id}
                 jam={jam}
               />

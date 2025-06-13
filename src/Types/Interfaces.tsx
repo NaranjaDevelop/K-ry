@@ -12,6 +12,7 @@ export interface userinterface{
   user_groups: Group[];
   user_email: string;
   user_favorites: Song[];
+  user_valence: number;
 }
 
 export type Group = {

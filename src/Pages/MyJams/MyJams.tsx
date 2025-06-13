@@ -68,7 +68,7 @@ const MyJams = () => {
                         matchPercentage={jam.matchPercentage || 75}
                         members={jam.users.length || 10}
                         coverImage={jam.image}
-                        isUp={ true}
+                        isUp={ jam?.matchPercentage ? jam.matchPercentage > 50 : true}
                         id={jam.id}
                         jam={jam}
                       />
@@ -96,7 +96,7 @@ const MyJams = () => {
                           matchPercentage={jam.matchPercentage || 75}
                           members={jam.users.length || 10}
                           coverImage={jam.image}
-                          isUp={true}
+                          isUp={jam?.matchPercentage ? jam.matchPercentage > 50 : true}
                           id={jam.id}
                           jam={jam}
                         />

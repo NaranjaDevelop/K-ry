@@ -23,7 +23,8 @@ const initialState: UserState = {
         user_explicit: false,
         user_groups: [],
         user_email: '',
-        user_favorites: []
+        user_favorites: [],
+        user_valence: 0
     },
     userGroups: [],
     otherGroups: [],
@@ -55,7 +56,8 @@ export const userSlice = createSlice({
             user_tempo: action.payload.tempo || 0,
             user_loudness: action.payload.loudness || 0,
             user_explicit: action.payload.explicit || false,
-            user_favorites: action.payload.favorites || []
+            user_favorites: action.payload.favorites || [],
+            user_valence: action.payload.valence || 0,
         };
     },
     setFavs: (state, action) => {
@@ -113,8 +115,8 @@ export const { setUser, setGroups, insertGroup, updateGroup, setFavs, setTastes,
 
 export const getGroups = createAsyncThunk('user/getGroups', async (_, thunkAPI) => {
     const state = thunkAPI.getState() as { user: UserState };
-    const username = state.user.user.user_name;
-    const groups = await getAllGroups(username);
+    const user = state.user.user;
+    const groups = await getAllGroups(user.user_name, user);
     thunkAPI.dispatch(setGroups(groups));
 });
 

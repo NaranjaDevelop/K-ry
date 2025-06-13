@@ -8,7 +8,7 @@ import video from "../../assets/fondok-ry.mp4"
 import logo from "../../assets/logo-kry-white.png"; // Assuming you have a logo image
 import { loginUser, registerUser } from "../../services/supabase";
 import { useAppDispatch } from "../../store/store";
-import { getGroups, setUser, setUserFromLogin } from "../../store/slice";
+import { setUser, setUserFromLogin } from "../../store/slice";
 import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
