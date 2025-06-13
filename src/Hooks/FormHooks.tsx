@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import dataform from '../utils/Formsdata'
+import { useSelector } from "react-redux";
+import { useAppDispatch, type storeType } from "../store/store";
+import type { SupaUserTastes } from "../Types/Interfaces";
+import { updateTastes } from "../services/supabase";
+import { setFavs, setTastes } from "../store/slice";
 
 export const useForm = () => {
     const [questions, setQuestions] = useState<any[]>([]);
@@ -9,7 +14,11 @@ export const useForm = () => {
     const [selectedAnswer, setSelectedAnswer] = useState<number | number[] | null>(null);
     const [generalIndex, setGeneralIndex] = useState<number>(0);
 
+    console.log(optionvalue)
+
     const navigate = useNavigate();
+    const username = useSelector((state: storeType) => state.user.user.user_name) || "";
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         setQuestions(dataform.formulario);
@@ -20,7 +29,23 @@ export const useForm = () => {
 
     const handleNext = () => {
         if (questionIndex === questions.length - 1) {
+
             navigate("/home", { state: { optionvalue } });
+
+            const tastes: SupaUserTastes = {
+                dance: optionvalue.danceability || 0,
+                energy: optionvalue.energy || 0,
+                instrumental: optionvalue.instrumentalness || 0,
+                speech: optionvalue.speechiness || 0,
+                tempo: optionvalue.tempo || 0,
+                loudness: optionvalue.loudness || 0,
+                explicit: optionvalue.explicit || false,
+                valence: optionvalue.valence || 0,
+                genres: [ optionvalue.track_genre ],
+            }
+
+            updateTastes(username, tastes)
+            dispatch(setTastes(tastes))
             return;
         } else {
             const selectedAnswervalue = selectedAnswer;

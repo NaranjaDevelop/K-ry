@@ -63,7 +63,7 @@ export const userSlice = createSlice({
             state.user.user_favorites = action.payload.favorites || [];
     },
     setTastes: (state, action) => {
-        state.user.user_genre = action.payload.genre || '';
+        state.user.user_genre = action.payload.genres || '';
         state.user.user_danceability = action.payload.dance || 0;
         state.user.user_energy = action.payload.energy || 0;
         state.user.user_instrumentalness = action.payload.instrumental || 0;

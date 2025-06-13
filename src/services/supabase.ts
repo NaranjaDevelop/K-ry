@@ -1,4 +1,4 @@
-import type { Group, Song } from "../Types/Interfaces";
+import type { Group, Song, SupaUserTastes } from "../Types/Interfaces";
 import supabase from "./supaConfig";
 
 export default supabase;
@@ -156,4 +156,27 @@ export const favoriteSong = async (song: Song, username: string) => {
     }
 
     return { success: true, favs };
+}
+
+export const updateTastes = async (username: string, tastes: SupaUserTastes) => {
+    const { error } = await supabase
+        .from('users')
+        .update({
+            dance: tastes.dance,
+            energy: tastes.energy,
+            explicit: tastes.explicit,
+            instrumental: tastes.instrumental,
+            speech: tastes.speech,
+            tempo: tastes.tempo,
+            loudness: tastes.loudness,
+            valence: tastes.valence,
+            genres: tastes.genres
+        })
+        .eq('username', username);
+
+    if (error) {
+        throw error;
+    }
+
+    return { success: true };
 }

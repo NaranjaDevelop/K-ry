@@ -5,7 +5,6 @@ import './Form.css';
 import { useForm } from '../../Hooks/FormHooks';
 import AnswerOption from './Components/Answers/Answers';
 
-import CheckboxAnswerOption from './Components/Checkbox/Checkbox';
 import logo from '../../assets/K-RY.png'
 
 

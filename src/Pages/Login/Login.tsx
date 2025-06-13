@@ -38,7 +38,7 @@ const Auth = () => {
     } else {
       registerUser(
         formData.username, formData.email, formData.password).then((user) => dispatch(setUser(user)));
-      navigate("/home");
+      navigate("/form");
     }
   };
 

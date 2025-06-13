@@ -72,4 +72,16 @@ export type UserPreferences = {
   user_valence: number;
 };
 
+export type SupaUserTastes = {
+  genres: string[];
+  dance: number;
+  energy: number;
+  instrumental: number;
+  speech: number;
+  tempo: number;
+  loudness: number;
+  explicit: boolean;
+  valence: number;
+}
+
 
