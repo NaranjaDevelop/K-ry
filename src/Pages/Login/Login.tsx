@@ -9,7 +9,7 @@ import logo from "../../assets/logo-kry-white.png"; // Assuming you have a logo 
 import { loginUser, registerUser } from "../../services/supabase";
 import { useAppDispatch } from "../../store/store";
 import { setUser, setUserFromLogin } from "../../store/slice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const state = useLocation().state

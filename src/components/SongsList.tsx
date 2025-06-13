@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 import getSpotifyToken from "../services/spotify";
 import { useParams } from "react-router-dom";
 import supabase from "../services/supaConfig";
+import type { Group, Song } from "../Types/Interfaces";
 
 interface songsrecommended {
   Unnamed: number;
@@ -54,23 +55,22 @@ interface SongsListProps {
   onToggleFavorite: (song: Song) => void;
 }
 
-const SongsList = ({ songs, title = "All Songs", favorites, onToggleFavorite }: SongsListProps) => {
+const SongsList = ({  title = "All Songs", onToggleFavorite }: SongsListProps) => {
   const [songss, setsongs] = useState<Group>({
     id: 0,
     name: "",
-    danceability: "",
-    energy: "",
+    danceability: 0,
+    energy: 0,
     songs: [],
     users: [],
-    speechiness: "",
-    instrumentalness: "",
-    tempo: "",
-    loudness: "",
-    valence: "",
-    explicit: "",
+    speechiness: 0,
+    instrumentalness: 0,
+    tempo: 0,
+    loudness: 0,
+    valence: 0,
+    explicit: false,
     image: "",
     genres: [],
-    photo: null,
     description: "",
   })
   const [spotify, setspotify] = useState<any>([]) 
@@ -182,7 +182,7 @@ useEffect(() => {
 
               <button
                 className="p-2 text-gray-400 hover:text-white transition-colors group-hover:opacity-100"
-                onClick={() => onToggleFavorite(index)}
+                onClick={() => onToggleFavorite(songss.songs.find(s => s.track_id === song.id) as Song)}
               >
                 <Heart
                   size={16}

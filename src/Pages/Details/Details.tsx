@@ -8,9 +8,16 @@ import GenreTags from "@/components/GenreTags";
 import { useParams } from "react-router-dom";
 import supabase from "../../services/supaConfig";
 import { useEffect, useState } from "react";
+import type { Song } from "../../Types/Interfaces";
+import { favoriteSong } from "../../services/supabase";
+import { useSelector } from "react-redux";
+import { useAppDispatch, type storeType } from "../../store/store";
+import { setFavs } from "../../store/slice";
 
 const Details = () => {
   const [jams,setJams] = useState<any[]>([])
+  const username = useSelector((state: storeType) => state.user.user.user_name) || "";
+  const dispatch = useAppDispatch()
   
   const { id: paramid } = useParams<{ id: string }>();
  useEffect(() => {
@@ -26,6 +33,12 @@ const Details = () => {
   }, [paramid]);
   
   console.log(jams);
+
+  const handleFavorite = (song: Song) => {
+    favoriteSong(song, username).then(({ favs }) => {
+      dispatch(setFavs({favorites: favs }));
+    });
+  }
   
   return (
     <div className="min-h-screen bg-gray-950 text-white flex w-screen">
@@ -40,7 +53,7 @@ const Details = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
             <div className="lg:col-span-2 ">
-              <SongsList songs />
+              <SongsList songs onToggleFavorite={handleFavorite}/>
             </div>
             <div className="lg:col-span-1 ">
               <GenreTags />
