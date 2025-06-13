@@ -43,6 +43,7 @@ export const userSlice = createSlice({
         };
     },
     setUserFromLogin: (state, action) => {
+        console.log("Setting user from login:", action.payload);
         state.user = {
             ...state.user,
             id: action.payload.id || 0,
@@ -65,6 +66,7 @@ export const userSlice = createSlice({
             state.user.user_favorites = action.payload.favorites || [];
     },
     setTastes: (state, action) => {
+        console.log("Setting user tastes:", action.payload);
         state.user.user_genre = action.payload.genres || '';
         state.user.user_danceability = action.payload.dance || 0;
         state.user.user_energy = action.payload.energy || 0;

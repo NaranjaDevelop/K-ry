@@ -14,7 +14,9 @@ export const registerUser = async (username: string, email: string, password: st
         throw error;
     }
 
-    return data;
+    console.log("User registered:", data);
+
+    return data[0];
 }
 
 export const loginUser = async (email: string, password: string) => {
@@ -167,6 +169,7 @@ export const favoriteSong = async (song: Song, username: string) => {
 }
 
 export const updateTastes = async (username: string, tastes: SupaUserTastes) => {
+    console.log("Updating tastes for user:", username, tastes);
     const { error } = await supabase
         .from('users')
         .update({
