@@ -26,10 +26,9 @@ const Features = () => {
   bgColor="bg-gray-900"
   icon="🤖"
 >
-  <Button variant="outline" onClick={() => window.open("https://web.telegram.org/a/#7314161191", "_blank")}>Try it now</Button>
+  <Button variant="outline" onClick={() => window.open("https://t.me/prubasti_bot", "_blank")}>Try it now</Button>
 </FeatureCard>
         </div>
-        
         
       </div>
     </div>
