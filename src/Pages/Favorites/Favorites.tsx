@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import SongsList from "@/components/SongsList";
@@ -12,6 +11,7 @@ import { setFavs } from "../../store/slice";
 const Favorites = () => {
 
   const favs = useSelector((state: storeType) => state.user.user.user_favorites) || [];
+  console.log(favs);
   const username = useSelector((state: storeType) => state.user.user.user_name) || "";
   const dispatch = useAppDispatch();
 

@@ -31,7 +31,7 @@ const MembersList = (users: {users: Group}) => {
                 alt={member}
                 className="w-20 h-20 rounded-full object-cover mb-2"
               />
-              <button className="absolute -top-0 -right-1 w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-600" onClick={() => joinGroup(users.users.id, username)}>
+              <button className="absolute -top-0 -right-1 w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-600" onClick={() => joinGroup(users.users.id, member)}>
                 −
               </button>
             </div>

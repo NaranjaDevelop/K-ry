@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 import getSpotifyToken from "../services/spotify";
 import { useParams } from "react-router-dom";
 import supabase from "../services/supaConfig";
-import type { Group, Song } from "../Types/Interfaces";
+import type { Song } from "../Types/Interfaces";
 
 interface songsrecommended {
   Unnamed: number;
@@ -49,14 +49,14 @@ interface songsrecommended {
 }
 
 interface SongsListProps {
-  songs: songsrecommended[];
+  songs?: Song[];
   title?: string;
   favorites: string[]; // lista de IDs favoritos
   onToggleFavorite: (song: Song) => void;
 }
 
-const SongsList = ({  title = "All Songs", onToggleFavorite }: SongsListProps) => {
-  const [songss, setsongs] = useState<Group>({
+const SongsList = ({songs,  title = "All Songs", onToggleFavorite }: SongsListProps) => {
+  const [songss, setsongs] = useState<any>({
     id: 0,
     name: "",
     danceability: 0,
@@ -75,10 +75,33 @@ const SongsList = ({  title = "All Songs", onToggleFavorite }: SongsListProps) =
   })
   const [spotify, setspotify] = useState<any>([]) 
 
+  console.log()
+
  const { id: paramid } = useParams<{ id: string }>();
  
 
 useEffect(() => {
+
+  if (songs) {
+    setsongs({
+      id: 0,
+      name: "",
+      danceability: 0,
+      energy: 0,
+      songs: songs,
+      users: [],
+      speechiness: 0,
+      instrumentalness: 0,
+      tempo: 0,
+      loudness: 0,
+      valence: 0,
+      explicit: false,
+      image: "",
+      genres: [],
+      description: "",
+    });
+    return;
+  }
   
   const fetchData = async () => {
     // Fetch song list
