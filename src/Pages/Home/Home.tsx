@@ -78,7 +78,6 @@ const Home = () => {
                 members={jam.users.length}
                 coverImage={jam.image}
                 isUp={jam?.matchPercentage ? jam.matchPercentage > 50 : true}
-                id={jam.id}
                 jam={jam}
               />
             ))}

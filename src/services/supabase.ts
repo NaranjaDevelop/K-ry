@@ -105,7 +105,7 @@ export const joinGroup = async (groupId: number, username: string) => {
         }
 
         const result = await response.json();
-        return result; // { protoperson, recommended_songs, updated_group }
+        return result; 
 
     } catch (error) {
         console.error("Error joining group:", error);

@@ -224,7 +224,7 @@ useEffect(() => {
                 />
               </button>
 
-              <div className="text-gray-400 text-sm w-12 text-right">{song.duration_ms}</div>
+              <div>{`${Math.floor((song.duration_ms || 0) / 60000)}:${String(Math.floor(((song.duration_ms || 0) % 60000) / 1000)).padStart(2, '0')}`}</div>
             </div>
           );
         })}
