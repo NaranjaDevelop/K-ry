@@ -5,8 +5,27 @@ import PlaylistHeader from "@/components/PlaylistHeader";
 import MembersList from "@/components/MembersList";
 import SongsList from "@/components/SongsList";
 import GenreTags from "@/components/GenreTags";
+import { useParams } from "react-router-dom";
+import supabase from "../../services/supaConfig";
+import { useEffect, useState } from "react";
 
 const Details = () => {
+  const [jams,setJams] = useState<any[]>([])
+  
+  const { id: paramid } = useParams<{ id: string }>();
+ useEffect(() => {
+    const getGroup = async () => {
+      const { data: group } = await supabase
+        .from('groups')
+        .select('*')
+        .eq('id', paramid)
+        .single();
+      setJams(group ? [group] : []);
+    };
+    getGroup();
+  }, [paramid]);
+  
+  console.log(jams);
   
   return (
     <div className="min-h-screen bg-gray-950 text-white flex w-screen">
@@ -16,7 +35,7 @@ const Details = () => {
         <Header />
         
         <main className="flex-1 p-8 overflow-y-auto ">
-          <PlaylistHeader />
+          <PlaylistHeader name={jams[0]?.name || ""} />
           <MembersList />
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">

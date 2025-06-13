@@ -2,7 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Heart, ThumbsDown, Share2 } from "lucide-react";
 
-const PlaylistHeader = () => {
+const PlaylistHeader = ({name}:{name: string}) => {
+  
   return (
     <div className="flex items-center space-x-8 mb-8">
       {/* Playlist Cover */}
@@ -16,7 +17,7 @@ const PlaylistHeader = () => {
 
       {/* Playlist Info */}
       <div className="flex-1 ">
-        <h1 className="text-left text-6xl font-bold text-white mb-4">Chill Group</h1>
+        <h1 className="text-left text-6xl font-bold text-white mb-4">{name}</h1>
         
         <div className="flex items-center space-x-2 mb-6">
           <div className="w-3 h-3 bg-green-400 rounded-full"></div>

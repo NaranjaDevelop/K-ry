@@ -1,6 +1,26 @@
+// // 1. Fetch group data when paramid
+//   id: number;
+//   name: string;
+//   danceability: string;
+//   energy: string;
+//   songs: songsrecommended[]; // assuming the song objects are of type songsrecommended
+//   users: string[];
+//   speechiness: string;
+//   instrumentalness: string;
+//   tempo: string;
+//   loudness: string;
+//   valence: string;
+//   explicit: string;
+//   image: string;
+//   genres: string[];
+//   photo: string | null;
+//   description: string;
+// }
 import { Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 import getSpotifyToken from "../services/spotify";
+import { useParams } from "react-router-dom";
+import supabase from "../services/supaConfig";
 
 interface songsrecommended {
   Unnamed: number;
@@ -35,34 +55,59 @@ interface SongsListProps {
 }
 
 const SongsList = ({ songs, title = "All Songs", favorites, onToggleFavorite }: SongsListProps) => {
-  const [songss, setsongs] = useState<songsrecommended[]>([])
-  const [spotify, setspotify] = useState<any>([]) // Use a proper type if available
+  const [songss, setsongs] = useState<Group>({
+    id: 0,
+    name: "",
+    danceability: "",
+    energy: "",
+    songs: [],
+    users: [],
+    speechiness: "",
+    instrumentalness: "",
+    tempo: "",
+    loudness: "",
+    valence: "",
+    explicit: "",
+    image: "",
+    genres: [],
+    photo: null,
+    description: "",
+  })
+  const [spotify, setspotify] = useState<any>([]) 
+
+ const { id: paramid } = useParams<{ id: string }>();
+ 
+
 useEffect(() => {
+  
   const fetchData = async () => {
     // Fetch song list
-    const response = await fetch("https://k-ry.onrender.com/Newuser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: {
-          user_loudness: -10,
-          user_tempo: 120.0,
-          user_speechiness: 0.9,
-          user_danceability: 0.4,
-          user_energy: 0.6,
-          user_valence: 0.3,
-          user_instrumentalness: 0.7,
-          user_genre: 'spanish,pop,rock',
-          user_explicit: false
-        }
-      }),
-    });
-    const data = await response.json();
-    setsongs(data);
-    console.log(data);
-
+const getGroup = async () => {
+      const { data: group } = await supabase
+        .from('groups')
+        .select('*')
+        .eq('id', paramid)
+        .single();
+      setsongs(group ? group : {
+        id: 0,
+        name: "",
+        danceability: "",
+        energy: "",
+        songs: [],
+        users: [],
+        speechiness: "",
+        instrumentalness: "",
+        tempo: "",
+        loudness: "",
+        valence: "",
+        explicit: "",
+        image: "",
+        genres: [],
+        photo: null,
+        description: "",
+      });
+    };
+    getGroup();
     // Fetch Spotify info for the first song if available
     
       const tokens = await getSpotifyToken(
@@ -71,7 +116,8 @@ useEffect(() => {
       );
       
       const spotifyTracks = await Promise.all(
-        data[0].map(async (spotifydata: any) => {
+        
+        songss.songs.map(async (spotifydata: any) => {
           const spotifyResponse = await fetch(
         `https://api.spotify.com/v1/tracks/${spotifydata.track_id}`,
         {
