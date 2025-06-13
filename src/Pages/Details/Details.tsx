@@ -7,6 +7,7 @@ import SongsList from "@/components/SongsList";
 import GenreTags from "@/components/GenreTags";
 
 const Details = () => {
+  
   return (
     <div className="min-h-screen bg-gray-950 text-white flex w-screen">
       <Sidebar className="w-64 h-screen fixed top-0 left-0 bg-gray-900 z-50" />
@@ -20,7 +21,7 @@ const Details = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
             <div className="lg:col-span-2 ">
-              <SongsList />
+              <SongsList songs />
             </div>
             <div className="lg:col-span-1 ">
               <GenreTags />

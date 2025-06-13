@@ -2,8 +2,10 @@
 import Navigation from "./Navigation";
 import banner from "../assets/imagen banner.png"; // Assuming you have a banner image
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate()
   return (
     <div className="relative min-h-screen overflow-hidden">
       <Navigation />
@@ -25,7 +27,7 @@ const Hero = () => {
         
         <div className="text-center">
           <div className="inline-flex flex-col items-center space-x-2 gap-y-12 text-white/60 mb-4">
-          <Button variant="outline" className="text-white hover:text-white hover:bg-white/10">
+          <Button variant="outline" className="text-white hover:text-white hover:bg-white/10" onClick={() => navigate('/login')}>
                       Start your vibe now!
                     </Button>
             <div className="flex -space-x-2">

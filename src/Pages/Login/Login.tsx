@@ -6,9 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import video from "../../assets/fondok-ry.mp4"
 import logo from "../../assets/logo-kry-white.png"; // Assuming you have a logo image
+import { useLocation } from "react-router-dom";
 
 const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const state = useLocation().state
+  
+  const [isLogin, setIsLogin] = useState(state.login);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -17,7 +20,8 @@ const Auth = () => {
     rememberMe: false,
     agreeToTerms: false,
   });
-
+ 
+  
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
@@ -86,7 +90,7 @@ const Auth = () => {
                   type="text"
                   placeholder="john_doe_123"
                   value={formData.username}
-                  onChange={(e) => handleInputChange("username", e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange("username", e.target.value)}
                   className="auth-input border-gray-600 text-white placeholder-gray-400 h-12"
                 />
               </div>
@@ -98,7 +102,7 @@ const Auth = () => {
                 type="email"
                 placeholder="john.doe@gmail.com"
                 value={formData.email}
-                onChange={(e) => handleInputChange("email", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange("email", e.target.value)}
                 className="auth-input border-gray-600 text-white placeholder-gray-400 h-12"
               />
             </div>
@@ -110,7 +114,7 @@ const Auth = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••••••••••••••••"
                   value={formData.password}
-                  onChange={(e) => handleInputChange("password", e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange("password", e.target.value)}
                   className="auth-input border-gray-600 text-white placeholder-gray-400 h-12 pr-10"
                 />
                 <button
@@ -131,7 +135,7 @@ const Auth = () => {
                     <Checkbox
                       id="remember"
                       checked={formData.rememberMe}
-                      onCheckedChange={(checked) => handleInputChange("rememberMe", checked === true)}
+                      onCheckedChange={(checked: boolean) => handleInputChange("rememberMe", checked === true)}
                     />
                     <label htmlFor="remember" className="text-sm auth-muted">
                       Remember me
@@ -149,7 +153,7 @@ const Auth = () => {
                   <Checkbox
                     id="terms"
                     checked={formData.agreeToTerms}
-                    onCheckedChange={(checked) => handleInputChange("agreeToTerms", checked === true)}
+                    onCheckedChange={(checked: boolean) => handleInputChange("agreeToTerms", checked === true)}
                   />
                   <label htmlFor="terms" className="text-sm auth-muted">
                     I agree to all the{" "}
