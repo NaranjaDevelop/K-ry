@@ -235,9 +235,9 @@ export const compareUsers = async (user: userinterface, group: Group) => {
         const result = await response.json();
         console.log(result); 
 
-        console.log("Distance score:", result.distance_score);
+        console.log("Distance score:", result.similarity_percentage);
 
-        return result.distance_score
+        return result.similarity_percentage
 
     } catch (error) {
         console.error("Error comparing users:", error);

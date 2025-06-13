@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch, type storeType } from '../../store/store';
 import { createGroup } from '../../services/supabase';
 import { getGroups } from '../../store/slice';
+import { compareUsers } from '../../services/supabase';
 
 
 
@@ -23,8 +24,29 @@ const Home = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [jams, setJams] = useState<Group[]>([]);
 
+
   const user = useSelector((state: storeType) => state.user.user);
   const otherGroups = useSelector((state: storeType) => state.user.otherGroups);
+
+useEffect(() => {
+  const compareAllJams = async () => {
+    if (!user || !jams.length) return;
+    const results = await Promise.all(
+      jams.map(async (jam) => {
+        try {
+          const score = await compareUsers(user, jam);
+          
+          return { ...jam, matchPercentage: score };
+        } catch {
+          return { ...jam, matchPercentage: 0 };
+        }
+      })
+    );
+    setJams(results);
+  };
+  compareAllJams();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [user, otherGroups]);
   
   useEffect(() => {
   setJams(otherGroups);
