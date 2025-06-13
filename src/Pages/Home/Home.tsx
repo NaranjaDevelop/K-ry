@@ -74,7 +74,7 @@ const Home = () => {
                 key={jam.id}
                 title={jam.name}
                 matchPercentage={jam.matchPercentage}
-                members={jam.users}
+                members={jam.users.length}
                 coverImage={jam.image}
                 isUp={jam.users.includes(user.user_name)}
                 id={jam.id}

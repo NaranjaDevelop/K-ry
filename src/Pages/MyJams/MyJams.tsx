@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
 import JamCard from '@/components/JamCard';
 import CreateJamModal from '@/components/CreateJamModal';
 import { X } from 'lucide-react';
-import supabase from '../../services/supaConfig';
+import { useSelector } from 'react-redux';
+import type { storeType } from '../../store/store';
+import { joinGroup } from '../../services/supabase';
+import { useEffect, useState } from 'react';
 
-const MOCK_USER_ID = 'user-123'; // Simula ID del usuario logueado
 
 const SkeletonCard = () => (
   <div className="bg-gray-800 rounded-xl h-64 animate-pulse p-4 flex flex-col justify-between">
@@ -19,42 +20,28 @@ const SkeletonCard = () => (
 );
 
 const MyJams = () => {
-  const [createdJams, setCreatedJams] = useState([]);
-  const [joinedJams, setJoinedJams] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchGroups = async () => {
-      setLoading(true);
-      const { data: groups, error } = await supabase.from('groups').select('*');
-
-      if (error) {
-        console.error('Error fetching groups:', error);
-        setLoading(false);
-        return;
-      }
-
-      const created = groups.filter((g) => g.owner_id === MOCK_USER_ID);
-      const joined = groups.filter((g) => g.owner_id !== MOCK_USER_ID);
-
-      setCreatedJams(created);
-      setJoinedJams(joined);
-      setLoading(false);
-    };
-
-    fetchGroups();
-  }, []);
+  const createdJams = useSelector((state: storeType) => state.user.userGroups);
+  const joinedJams = useSelector((state: storeType) => state.user.joinedGroups);
+  const userName = useSelector((state: storeType) => state.user.user.user_name);
+  const [loading, setLoading] = useState(true);
 
   const handleCreateJam = () => setIsCreateModalOpen(true);
   const handleCloseModal = () => setIsCreateModalOpen(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  })
 
   const handleLeaveJam = async (jamId: number) => {
     const confirm = window.confirm('Are you sure you want to leave this jam?');
     if (!confirm) return;
 
-    // Aquí iría la lógica real con Supabase
-    setJoinedJams((prev) => prev.filter((jam) => jam.id !== jamId));
+    // Esta sirve para join y para salirse 
+    joinGroup(jamId, userName)
   };
 
   return (
@@ -77,11 +64,12 @@ const MyJams = () => {
                       <JamCard
                         className="h-full"  
                         key={jam.id}
-                        title={jam.title}
+                        title={jam.name}
                         matchPercentage={jam.matchPercentage || 75}
-                        members={jam.members || 10}
-                        coverImage={jam.coverImage}
-                        isUp={jam.isUp ?? true}
+                        members={jam.users.length || 10}
+                        coverImage={jam.image}
+                        isUp={ true}
+                        id={jam.id}
                       />
                     ))
                   ) : (
@@ -102,12 +90,13 @@ const MyJams = () => {
                     joinedJams.map((jam) => (
                       <div key={jam.id} className="relative group">
                         <JamCard
-                            className="h-full"
-                          title={jam.title}
+                          className="h-full"
+                          title={jam.name}
                           matchPercentage={jam.matchPercentage || 75}
-                          members={jam.members || 10}
-                          coverImage={jam.coverImage}
-                          isUp={jam.isUp ?? true}
+                          members={jam.users.length || 10}
+                          coverImage={jam.image}
+                          isUp={true}
+                          id={jam.id}
                         />
                         {/* Leave Button */}
                         <button

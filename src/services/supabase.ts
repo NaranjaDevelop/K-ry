@@ -77,31 +77,30 @@ export const createGroup = async (name: string, description: string, photo: stri
 }
 
 export const joinGroup = async (groupId: number, username: string) => {
-    const { data, error } = await supabase
-        .from('groups')
-        .select('users')
-        .eq('id', groupId)
-        .single();
+    try {
+         const response = await fetch("https://k-ry.onrender.com//updateproto", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+            username,
+            groupId
+            })
+        });
 
-    if (error) {
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Failed to update group");
+        }
+
+        const result = await response.json();
+        return result; // { protoperson, recommended_songs, updated_group }
+
+    } catch (error) {
+        console.error("Error joining group:", error);
         throw error;
     }
-
-    const users = data?.users || [];
-    if (!users.includes(username)) {
-        users.push(username);
-    }
-
-    const { error: updateError } = await supabase
-        .from('groups')
-        .update({ users })
-        .eq('id', groupId);
-
-    if (updateError) {
-        throw updateError;
-    }
-
-    return { success: true };
 }
 
 export const leaveGroup = async (groupId: string, username: string) => {

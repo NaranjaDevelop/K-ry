@@ -12,7 +12,6 @@ interface JamCardProps {
   coverImage: string;
   isUp?: boolean;
   className?: string;
-  id: number;
 }
 
 const JamCard = ({
