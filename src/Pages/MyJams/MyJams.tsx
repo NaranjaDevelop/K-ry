@@ -70,6 +70,7 @@ const MyJams = () => {
                         coverImage={jam.image}
                         isUp={ true}
                         id={jam.id}
+                        jam={jam}
                       />
                     ))
                   ) : (
@@ -97,6 +98,7 @@ const MyJams = () => {
                           coverImage={jam.image}
                           isUp={true}
                           id={jam.id}
+                          jam={jam}
                         />
                         {/* Leave Button */}
                         <button

@@ -78,6 +78,7 @@ const Home = () => {
                 coverImage={jam.image}
                 isUp={jam.users.includes(user.user_name)}
                 id={jam.id}
+                jam={jam}
               />
             ))}
           </div>

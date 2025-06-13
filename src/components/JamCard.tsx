@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { joinGroup } from '../services/supabase';
 import { useSelector } from 'react-redux';
 import type { storeType } from '../store/store';
+import type { Group } from '../Types/Interfaces';
 
 interface JamCardProps {
   id: number;
@@ -12,6 +13,7 @@ interface JamCardProps {
   coverImage: string;
   isUp?: boolean;
   className?: string;
+  jam: Group;
 }
 
 const JamCard = ({
@@ -22,6 +24,7 @@ const JamCard = ({
   coverImage,
   isUp = true,
   className = '',
+  jam,
 }: JamCardProps) => {
   const navigate = useNavigate();
 
@@ -55,7 +58,7 @@ const JamCard = ({
 
   return (
     <div
-      onClick={() => navigate(`/details/${id}`)}
+      onClick={() => navigate(`/details/${id}`, { state: { jam: jam } })}
       className={`relative group cursor-pointer h-full ${className}`}
     >
       <div className="bg-gray-800 rounded-xl overflow-hidden transition-all duration-300 group-hover:transform group-hover:scale-105 group-hover:shadow-2xl">
