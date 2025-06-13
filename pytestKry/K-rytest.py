@@ -29,7 +29,7 @@ for col in ['danceability', 'energy', 'instrumentalness', 'speechiness', 'tempo'
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
 
-def recommend_songs(df , user_danceability, user_energy, user_genre, user_instrumentalness, user_speechiness, user_tempo, user_loudness, user_valence, user_explicit, top_n=10):
+def recommend_songs(df , user_danceability, user_energy, user_genre, user_instrumentalness, user_speechiness, user_tempo, user_loudness, user_valence, user_explicit, top_n=15):
     # Filter by multiple genres
     user_genres = [genres.strip().lower() for genres in user_genre.split(',')]
     genre_filtered = df[df['track_genre'].isin(user_genres)].copy()
