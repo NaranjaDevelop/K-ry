@@ -6,17 +6,22 @@ import MembersList from "@/components/MembersList";
 import SongsList from "@/components/SongsList";
 import GenreTags from "@/components/GenreTags";
 import { useLocation } from "react-router-dom";
-import type { Group } from "../../Types/Interfaces";
+import type { Group, Song } from "../../Types/Interfaces";
 import { useSelector } from "react-redux";
-import type { storeType } from "../../store/store";
+import { useAppDispatch, type storeType } from "../../store/store";
+import { favoriteSong } from "../../services/supabase";
+import { setFavs } from "../../store/slice";
 
 const Details = () => {
   const jam: Group = useLocation().state.jam;
   console.log("Jam details:", jam);
   const userFavs = useSelector((state: storeType) => state.user.user.user_favorites) || [];
+  const username = useSelector((state: storeType) => state.user.user.user_name) || "";
+  const dispatch = useAppDispatch()
 
-  const handleAddFavorite = (songId: string) => {
-    console.log("Adding favorite song:", songId);
+  const handleAddFavorite = async (songId: Song) => {
+    const {favs} = await favoriteSong(songId, username)
+    dispatch(setFavs({favorites: favs || []}));
   }
 
   return (
@@ -27,8 +32,8 @@ const Details = () => {
         <Header />
         
         <main className="flex-1 p-8 overflow-y-auto ">
-          <PlaylistHeader />
-          <MembersList />
+          <PlaylistHeader jam={jam}/>
+          <MembersList users={jam.users}/>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
             <div className="lg:col-span-2 ">
@@ -36,7 +41,7 @@ const Details = () => {
                songs={jam.songs}
                title={jam.name}
                favorites={userFavs.map(f => f.track_id) || []} 
-                onToggleFavorite={(songId: string) => {
+                onToggleFavorite={(songId: Song) => {
                   handleAddFavorite(songId);
                 }}
               />

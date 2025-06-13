@@ -41,6 +41,37 @@ export const userSlice = createSlice({
             user_email: action.payload.email || '',
         };
     },
+    setUserFromLogin: (state, action) => {
+        state.user = {
+            ...state.user,
+            id: action.payload.id || 0,
+            user_name: action.payload.username || '',
+            user_email: action.payload.email || '',
+            user_genre: action.payload.genre || '',
+            user_danceability: action.payload.dance || 0,
+            user_energy: action.payload.energy || 0,
+            user_instrumentalness: action.payload.instrumental || 0,
+            user_speechiness: action.payload.speech || 0,
+            user_tempo: action.payload.tempo || 0,
+            user_loudness: action.payload.loudness || 0,
+            user_explicit: action.payload.explicit || false,
+            user_favorites: action.payload.favorites || []
+        };
+    },
+    setFavs: (state, action) => {
+        console.log("Setting favorites:", action.payload);
+            state.user.user_favorites = action.payload.favorites || [];
+    },
+    setTastes: (state, action) => {
+        state.user.user_genre = action.payload.genre || '';
+        state.user.user_danceability = action.payload.dance || 0;
+        state.user.user_energy = action.payload.energy || 0;
+        state.user.user_instrumentalness = action.payload.instrumental || 0;
+        state.user.user_speechiness = action.payload.speech || 0;
+        state.user.user_tempo = action.payload.tempo || 0;
+        state.user.user_loudness = action.payload.loudness || 0;
+        state.user.user_explicit = action.payload.explicit || false;
+    },
     setGroups: (state, action) => {
         state.userGroups = action.payload.userGroups || [];
         state.otherGroups = action.payload.otherGroups || [];
@@ -78,7 +109,7 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setUser, setGroups, insertGroup, updateGroup } = userSlice.actions
+export const { setUser, setGroups, insertGroup, updateGroup, setFavs, setTastes, setUserFromLogin } = userSlice.actions
 
 export const getGroups = createAsyncThunk('user/getGroups', async (_, thunkAPI) => {
     const state = thunkAPI.getState() as { user: UserState };

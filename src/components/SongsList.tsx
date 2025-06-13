@@ -5,7 +5,7 @@ interface SongsListProps {
   songs: Song[];
   title?: string;
   favorites: string[]; // lista de IDs favoritos
-  onToggleFavorite: (songId: string) => void;
+  onToggleFavorite: (song: Song) => void;
 }
 
 const SongsList = ({ songs, title = "All Songs", favorites, onToggleFavorite }: SongsListProps) => {
@@ -45,7 +45,7 @@ const SongsList = ({ songs, title = "All Songs", favorites, onToggleFavorite }: 
 
               <button
                 className="p-2 text-gray-400 hover:text-white transition-colors group-hover:opacity-100"
-                onClick={() => onToggleFavorite(song.track_id)}
+                onClick={() => onToggleFavorite(song)}
               >
                 <Heart
                   size={16}

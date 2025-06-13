@@ -66,12 +66,14 @@ export const getAllGroups = async (username: string) => {
 export const createGroup = async (name: string, description: string, photo: string, users: string[]) => {
     const { data, error } = await supabase
         .from('groups')
-        .insert([{ name, description, image: photo, users }])
+        .insert([{ name, description, image: photo, users: [] }])
         .select();
 
     if (error) {
         throw error;
     }
+
+    joinGroup(data[0].id, users[0]);
 
     return data;
 }
@@ -101,32 +103,6 @@ export const joinGroup = async (groupId: number, username: string) => {
         console.error("Error joining group:", error);
         throw error;
     }
-}
-
-export const leaveGroup = async (groupId: string, username: string) => {
-    const { data, error } = await supabase
-        .from('groups')
-        .select('users')
-        .eq('id', groupId)
-        .single();
-
-    if (error) {
-        throw error;
-    }
-
-    const users: string[] = data?.users || [];
-    const updatedUsers = users.filter(user => user !== username);
-
-    const { error: updateError } = await supabase
-        .from('groups')
-        .update({ users: updatedUsers })
-        .eq('id', groupId);
-
-    if (updateError) {
-        throw updateError;
-    }
-
-    return { success: true };
 }
 
 export const getImageUrl = async (file: File) => {
