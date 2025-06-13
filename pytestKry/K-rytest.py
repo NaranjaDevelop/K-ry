@@ -191,15 +191,28 @@ def postuser():
 
 def compareusers(user_logged, user_proto):
     # Calculate similarity score between two user profiles
-    # Example: Euclidean distance on selected features
     features = [
         'user_danceability', 'user_energy', 'user_instrumentalness',
         'user_speechiness', 'user_tempo', 'user_loudness', 'user_valence'
     ]
+    # Compute Euclidean distance
     score = 0
     for feat in features:
-        score += (user_logged.get(feat, 0) - user_proto.get(feat, 0)) ** 2
+        score += (float(user_logged.get(feat, 0)) - float(user_proto.get(feat, 0))) ** 2
     score = score ** 0.5
+
+
+    max_ranges = {
+        'user_danceability': 1,
+        'user_energy': 1,
+        'user_instrumentalness': 1,
+        'user_speechiness': 1,
+        'user_valence': 1,
+        'user_tempo': 250,      
+        'user_loudness': 60     
+    }
+    max_dist = sum((max_ranges[f]) ** 2 for f in features) ** 0.5
+    similarity_pct = max(0, 100 - (score / max_dist) * 100)
 
     # Compare genres (intersection over union)
     genres_logged = set(map(str.strip, str(user_logged.get('user_genre', '')).lower().split(',')))
@@ -210,7 +223,7 @@ def compareusers(user_logged, user_proto):
     explicit_match = user_logged.get('user_explicit') == user_proto.get('user_explicit')
 
     return {
-        'distance_score': score,
+        'similarity_percentage': round(similarity_pct, 2),
         'genre_similarity': genre_similarity,
         'explicit_match': explicit_match
     }
