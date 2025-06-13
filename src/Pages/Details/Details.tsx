@@ -49,11 +49,11 @@ const Details = () => {
         
         <main className="flex-1 p-8 overflow-y-auto ">
           <PlaylistHeader name={jams[0]?.name || ""} />
-          <MembersList />
+          <MembersList users={jams[0] ? jams[0] : null}/>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
             <div className="lg:col-span-2 ">
-              <SongsList songs onToggleFavorite={handleFavorite}/>
+              <SongsList onToggleFavorite={handleFavorite}/>
             </div>
             <div className="lg:col-span-1 ">
               <GenreTags />

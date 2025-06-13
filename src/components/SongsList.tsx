@@ -110,7 +110,20 @@ const getGroup = async () => {
     getGroup();
     // Fetch Spotify info for the first song if available
     
-      const tokens = await getSpotifyToken(
+      
+    
+  };
+  
+
+  fetchData();
+}, []);
+
+useEffect(() => {
+
+  if (!songss.songs || songss.songs.length === 0) return;
+
+  const fecthSpotyfy = async () => {
+    const tokens = await getSpotifyToken(
         import.meta.env.VITE_CLIENTIDSPOTIFY,
         import.meta.env.VITE_SECRETKEYSPOTIFY
       );
@@ -128,23 +141,21 @@ const getGroup = async () => {
         }
           );
           const trackInfo = await spotifyResponse.json();
+          console.log(trackInfo);
           return trackInfo;
         })
       );
+
+      console.log('mi')
       setspotify(spotifyTracks);
-    
-  };
+  }
+
+  fecthSpotyfy()
+  
+}, [songss])
+
   
 
-  fetchData();
-}, []);
-console.log(spotify);
-
-
-useEffect(() => {
-  
-  
-}, [songss]);
 
   return (
     <div className="bg-gray-900/50 rounded-lg p-6 w-full">

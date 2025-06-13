@@ -1,12 +1,19 @@
 
 import { Edit } from "lucide-react";
+import { joinGroup } from "../services/supabase";
+import type { Group } from "../Types/Interfaces";
+import type { storeType } from "../store/store";
+import { useSelector } from "react-redux";
 
-const MembersList = () => {
-  const members = Array(6).fill(null).map((_, index) => ({
-    id: index,
-    name: "David Damiano",
-    avatar: "https://images.unsplash.com/photo-1527576539890-dfa815648363?w=100&h=100&fit=crop&crop=face"
-  }));
+
+const MembersList = (users: {users: Group}) => {
+  const username = useSelector((state: storeType) => state.user.user.user_name)
+
+  console.log(users)
+  if (!users || !users.users || !users.users.users) {
+    return null; // Handle the case where users is not defined or has no members
+  }
+  const members = users.users.users || [];
 
   return (
     <div className="mb-8">
@@ -17,18 +24,18 @@ const MembersList = () => {
       
       <div className="flex space-x-10 overflow-x-auto">
         {members.map((member) => (
-          <div key={member.id} className="flex-shrink-0 text-center">
+          <div key={member} className="flex-shrink-0 text-center">
             <div className="relative">
               <img
-                src={member.avatar}
-                alt={member.name}
-                className="w-35 h-35 rounded-full object-cover mb-2"
+                src='https://braverplayers.org/wp-content/uploads/2022/09/blank-pfp.png'
+                alt={member}
+                className="w-20 h-20 rounded-full object-cover mb-2"
               />
-              <button className="absolute -top-0 -right-1 w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-600">
+              <button className="absolute -top-0 -right-1 w-6 h-6 bg-gray-700 rounded-full flex items-center justify-center text-white text-xs hover:bg-gray-600" onClick={() => joinGroup(users.users.id, username)}>
                 −
               </button>
             </div>
-            <p className="text-xs text-gray-400">{member.name}</p>
+            <p className="text-xs text-gray-400">{member}</p>
           </div>
         ))}
       </div>
