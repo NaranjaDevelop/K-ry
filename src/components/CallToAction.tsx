@@ -92,7 +92,7 @@ we turn your answers into one evolving playlist.</p>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
             Access our intelligent music bot on Telegram. Answer a few simple questions about your taste and mood, and we’ll match you with the perfect group and playlist — instantly.
           </p>
-          <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-sm font-semibold transition-all duration-300 hover:scale-105" onClick={() => window.open("https://web.telegram.org/a/#7314161191", "_blank")}>
+          <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-sm font-semibold transition-all duration-300 hover:scale-105" onClick={() => window.open("t.me/prubasti_bot", "_blank")}>
             Start Now
           </Button>
         </div>
